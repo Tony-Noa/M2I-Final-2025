@@ -34,10 +34,10 @@ public class UserAccount {
         joinColumns = @JoinColumn(name = "playerId"),
         inverseJoinColumns = @JoinColumn(name = "tourneyId"))
     private List<Tourney> joinedTourneys;
+    // TODO voir comment alimenter la liste de tournois participé d'un utilisateur mais cela se ferait surtout par la front end ?
 
-    @OneToMany(cascade ={CascadeType.PERSIST,CascadeType.REFRESH})
-    @JoinColumn(name = "matchId")
-    private List<Match> match;
+    //@OneToMany(mappedBy = "matchId")
+    private List<Match> matches;
 
 
     public UserAccountResponseDto entityToDto(){

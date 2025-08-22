@@ -1,5 +1,9 @@
 package org.example.tournament.dto.tourney;
 
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToMany;
+import jakarta.persistence.ManyToOne;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Pattern;
 
@@ -12,6 +16,7 @@ import org.example.tournament.entity.UserAccount;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.List;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -37,7 +42,7 @@ public class TourneyReceiveDto {
     private LocalDate signEndDate;
 
     @NotEmpty(message = "Please input a valid founder")
-    private UserAccount userAccount;
+    private UserAccount founder;
 
     private GameCategory gameCategory;
 
@@ -53,8 +58,10 @@ public class TourneyReceiveDto {
                 .signStartDate(getSignEndDate())
                 .signEndDate(getSignEndDate())
                 .gameCategory(getGameCategory())
-                .founder(getUserAccount())
+                .founder(getFounder())
                 .build();
     }
 }
+
+// Semble qu il y a pas besoin de mettre dans le receive ici
 

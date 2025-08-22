@@ -1,10 +1,15 @@
 package org.example.tournament.service;
 
+import org.apache.catalina.User;
 import org.example.tournament.dto.tourney.TourneyReceiveDto;
 import org.example.tournament.dto.tourney.TourneyResponseDto;
+import org.example.tournament.entity.GameCategory;
 import org.example.tournament.entity.Tourney;
+import org.example.tournament.entity.UserAccount;
 import org.example.tournament.exception.NotFoundException;
+import org.example.tournament.repository.GameCategoryRepository;
 import org.example.tournament.repository.TourneyRepository;
+import org.example.tournament.repository.UserAccountRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -13,12 +18,22 @@ import java.util.List;
 public class TourneyService {
 
     private final TourneyRepository tourneyRepository;
+    private final UserAccountRepository userAccountRepository;
+    private final GameCategoryRepository gameCategoryRepository;
 
-    public TourneyService(TourneyRepository tourneyRepository){
+
+    public TourneyService(TourneyRepository tourneyRepository, UserAccountRepository userAccountRepository, GameCategoryRepository gameCategoryRepository){
         this.tourneyRepository = tourneyRepository;
+        this.userAccountRepository = userAccountRepository;
+        this.gameCategoryRepository = gameCategoryRepository;
     }
 
-    public TourneyResponseDto create (TourneyReceiveDto tourneyReceiveDto){
+    public TourneyResponseDto create (TourneyReceiveDto tourneyReceiveDto, int founderId, int gameCategoryId){
+        UserAccount founder = userAccountRepository.findById(founderId).orElseThrow(NotFoundException::new);
+        tourneyReceiveDto.setFounder(founder);
+        GameCategory gameCategory = gameCategoryRepository.findById(gameCategoryId).orElseThrow(NotFoundException::new);
+        tourneyReceiveDto.setGameCategory(gameCategory);
+        founder.getCreatedTourneys().add(tourneyReceiveDto.dtoToEntity());
         return tourneyRepository.save(tourneyReceiveDto.dtoToEntity()).entityToDto();
     }
 

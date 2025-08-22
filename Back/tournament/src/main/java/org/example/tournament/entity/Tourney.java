@@ -41,7 +41,7 @@ public class Tourney {
     @ManyToMany(mappedBy = "joinedTourneys")
     private List<UserAccount> players;
 
-    @OneToMany(mappedBy = "match")
+    @OneToMany(mappedBy = "matchId")
     private List<Match> matches;
 
     public TourneyResponseDto entityToDto(){
@@ -61,4 +61,3 @@ public class Tourney {
 
 
 }
-// TODO refaire les Dto

@@ -3,7 +3,9 @@ package org.example.tournament.controller;
 import jakarta.validation.Valid;
 import org.example.tournament.dto.match.MatchReceiveDto;
 import org.example.tournament.dto.match.MatchResponseDto;
+import org.example.tournament.repository.MatchRepository;
 import org.example.tournament.service.MatchService;
+import org.springframework.data.repository.query.Param;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -16,14 +18,16 @@ import java.util.List;
 public class MatchController {
 
     private MatchService matchService;
+    private MatchRepository matchRepository;
 
-    public MatchController(MatchService MatchService){this.matchService = matchService;}
+    public MatchController(MatchService matchService, MatchRepository matchRepository ){this.matchService = matchService; this.matchRepository = matchRepository;}
 
-    @GetMapping("/matchs")
+    @GetMapping("/matches")
     public ResponseEntity<List<MatchResponseDto>> getAll(){ return ResponseEntity.ok(matchService.get());}
 
     @GetMapping("/{id}")
     public ResponseEntity<MatchResponseDto> get (@PathVariable int id){
+        //matchRepository.getAllMatchesOfAPlayer(id);
         return ResponseEntity.ok(matchService.get(id));
     }
 

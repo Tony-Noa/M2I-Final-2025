@@ -2,6 +2,7 @@ package org.example.tournament.service;
 
 import org.example.tournament.dto.userAccount.UserAccountReceiveDto;
 import org.example.tournament.dto.userAccount.UserAccountResponseDto;
+import org.example.tournament.entity.Tourney;
 import org.example.tournament.entity.UserAccount;
 import org.example.tournament.repository.UserAccountRepository;
 import org.springframework.stereotype.Service;
@@ -22,6 +23,7 @@ public class UserAccountService {
 
     public UserAccountResponseDto create (UserAccountReceiveDto UserAccountReceiveDto){
         return userAccountRepository.save(UserAccountReceiveDto.dtoToEntity()).entityToDto();
+
     }
 
     public UserAccountResponseDto get(int id){
