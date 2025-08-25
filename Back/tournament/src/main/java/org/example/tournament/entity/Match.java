@@ -21,11 +21,11 @@ public class Match {
     private int matchId;
 
     @ManyToOne(cascade ={CascadeType.PERSIST,CascadeType.REFRESH})
-    @JoinColumn(name = "userAccountId")
+    @JoinColumn(name = "p1Id")
     private UserAccount p1;
 
     @ManyToOne(cascade ={CascadeType.PERSIST,CascadeType.REFRESH})
-    @JoinColumn(name = "userAccountId")
+    @JoinColumn(name = "p2Id")
     private UserAccount p2;
 
     private int resultP1;

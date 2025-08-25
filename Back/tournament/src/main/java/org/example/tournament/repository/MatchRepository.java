@@ -8,6 +8,9 @@ import org.springframework.data.repository.query.Param;
 import java.util.List;
 
 public interface MatchRepository extends JpaRepository<Match, Integer> {
+    /*
+
+
     // faire une requete "from match where p1 ou p2" = idcherché @
     @Query("SELECT m FROM Match m WHERE m.p1 == :id OR m.p2 == :id")
     List<Match> getAllMatchesOfAPlayer(@Param("id") int id);
@@ -22,5 +25,7 @@ public interface MatchRepository extends JpaRepository<Match, Integer> {
     // recuperer les matchs d'un utilisateur s'il est p2, je la stock sur l'utilisateur et je renvoie tout ça
 
 
+
+     */
 
 }

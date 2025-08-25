@@ -11,7 +11,7 @@ import org.example.tournament.dto.userAccount.UserAccountResponseDto;
 import java.util.List;
 
 @Entity
-@Table(name="game_category")
+@Table(name="gameCategory")
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
@@ -20,7 +20,7 @@ import java.util.List;
 public class GameCategory {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int gameId;
+    private int gameCategoryId;
 
     private String name;
     private String icon;
@@ -31,7 +31,7 @@ public class GameCategory {
 
     public GameCategoryResponseDto entityToDto(){
         return GameCategoryResponseDto.builder()
-                .id(getGameId())
+                .id(getGameCategoryId())
                 .name(getName())
                 .icon(getIcon())
                 .logo(getLogo())

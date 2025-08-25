@@ -13,16 +13,16 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("api/match")
+@RequestMapping("match")
 
 public class MatchController {
 
     private MatchService matchService;
-    private MatchRepository matchRepository;
+    //private MatchRepository matchRepository;
 
-    public MatchController(MatchService matchService, MatchRepository matchRepository ){this.matchService = matchService; this.matchRepository = matchRepository;}
+    public MatchController(MatchService matchService){this.matchService = matchService;}
 
-    @GetMapping("/matches")
+    @GetMapping("/all")
     public ResponseEntity<List<MatchResponseDto>> getAll(){ return ResponseEntity.ok(matchService.get());}
 
     @GetMapping("/{id}")

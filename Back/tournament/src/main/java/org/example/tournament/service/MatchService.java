@@ -16,13 +16,7 @@ import java.util.List;
 
 @Service
 public class MatchService {
-/*
 
-private UserAccount p1;
-
-private UserAccount p2;
-
-private Tourney */
     private final MatchRepository matchRepository;
     private final UserAccountRepository userAccountRepository;
     private final TourneyRepository tourneyRepository;
@@ -33,19 +27,20 @@ private Tourney */
         this.tourneyRepository = tourneyRepository;
     }
 
-    public MatchResponseDto create (MatchReceiveDto matchReceiveDto, int p1Id, int p2Id, int tourneyId){
-        UserAccount player1 = userAccountRepository.findById(p1Id).orElseThrow(NotFoundException::new);
-        matchReceiveDto.setP1(player1);
+    public MatchResponseDto create (MatchReceiveDto matchReceiveDto){
+        UserAccount player1 = userAccountRepository.findById(matchReceiveDto.getP1Id()).orElseThrow(NotFoundException::new);
+        //matchReceiveDto.setP1(player1);
 
-        UserAccount player2 = userAccountRepository.findById(p2Id).orElseThrow(NotFoundException::new);
-        matchReceiveDto.setP2(player2);
+        UserAccount player2 = userAccountRepository.findById(matchReceiveDto.getP2Id()).orElseThrow(NotFoundException::new);
+        //matchReceiveDto.setP2(player2);
 
-        Tourney tourney = tourneyRepository.findById(tourneyId).orElseThrow(NotFoundException::new);
-        matchReceiveDto.setTourney(tourney);
-        player1.getMatches().add(matchReceiveDto.dtoToEntity());
-        player2.getMatches().add(matchReceiveDto.dtoToEntity());
+        Tourney tourney = tourneyRepository.findById(matchReceiveDto.getTourneyId()).orElseThrow(NotFoundException::new);
+        //matchReceiveDto.setTourney(tourney);
+        player1.getMatches().add(matchReceiveDto.dtoToEntity(userAccountRepository, tourneyRepository));
+        player2.getMatches().add(matchReceiveDto.dtoToEntity(userAccountRepository, tourneyRepository));
+        tourney.getMatches().add(matchReceiveDto.dtoToEntity(userAccountRepository, tourneyRepository));
 
-        return matchRepository.save(matchReceiveDto.dtoToEntity()).entityToDto();
+        return matchRepository.save(matchReceiveDto.dtoToEntity(userAccountRepository, tourneyRepository)).entityToDto();
     }
 
     public MatchResponseDto get(int id){
@@ -58,7 +53,7 @@ private Tourney */
 
     public MatchResponseDto update(int id, MatchReceiveDto matchReceiveDto){
         Match matchFound = matchRepository.findById(id).orElseThrow(NotFoundException::new);
-        Match matchGet = matchReceiveDto.dtoToEntity();
+        Match matchGet = matchReceiveDto.dtoToEntity(userAccountRepository, tourneyRepository);
         matchFound.setResultP1(matchGet.getResultP1());
         matchFound.setResultP2(matchGet.getResultP2());
         //matchFound.setRound(matchGet.getRound());

@@ -11,7 +11,7 @@ import org.example.tournament.dto.userAccount.UserAccountResponseDto;
 import java.util.List;
 
 @Entity
-@Table(name="userAccount")
+@Table(name="useraccount")
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
@@ -26,6 +26,11 @@ public class UserAccount {
     private String password;
     private String pp; // Profile picture
 
+    //@OneToMany(mappedBy = "matchId")
+    @Transient // Le transient permet d'ignorer l'attribut matches, on veut le recuperer pour l'envoyer au front parce qu'il faut tjr une relation quand on crée un nouvel objet
+    private List<Match> matches;
+
+
     @OneToMany(mappedBy = "founder")
     private List<Tourney> createdTourneys;
 
@@ -36,15 +41,12 @@ public class UserAccount {
     private List<Tourney> joinedTourneys;
     // TODO voir comment alimenter la liste de tournois participé d'un utilisateur mais cela se ferait surtout par la front end ?
 
-    //@OneToMany(mappedBy = "matchId")
-    private List<Match> matches;
-
 
     public UserAccountResponseDto entityToDto(){
         return UserAccountResponseDto.builder()
                 .id(getUserAccountId())
                 .username(getUsername())
-                .password(getPassword())
+             //   .password(getPassword())
                 .pp(getPp())
                 .build();
 

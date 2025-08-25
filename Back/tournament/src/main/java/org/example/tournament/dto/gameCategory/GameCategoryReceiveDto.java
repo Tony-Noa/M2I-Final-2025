@@ -7,6 +7,7 @@ import org.example.tournament.entity.GameCategory;
 import org.example.tournament.entity.Tourney;
 
 import java.time.format.DateTimeFormatter;
+import java.util.List;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -17,6 +18,7 @@ public class GameCategoryReceiveDto {
     private String name;
     private String icon;
     private String logo;
+    private List<Tourney> tourneys;
 
     public GameCategory dtoToEntity() {
 
@@ -24,6 +26,7 @@ public class GameCategoryReceiveDto {
                 .name(getName())
                 .icon(getIcon())
                 .logo(getLogo())
+                .tourneys(getTourneys())
                 .build();
     }
 }

@@ -12,14 +12,14 @@ import java.util.List;
 
 
 @RestController
-@RequestMapping("api/useraccount")
+@RequestMapping("useraccount")
 
 public class UserAccountController {
     private UserAccountService userAccountService;
 
     public UserAccountController(UserAccountService userAccountService){this.userAccountService = userAccountService;}
 
-    @GetMapping("/useraccounts")
+    @GetMapping("/all")
     public ResponseEntity<List<UserAccountResponseDto>> getAll(){ return ResponseEntity.ok(userAccountService.get());}
 
     @GetMapping("/{id}")

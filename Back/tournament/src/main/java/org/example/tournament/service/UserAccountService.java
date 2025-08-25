@@ -38,7 +38,6 @@ public class UserAccountService {
         UserAccount userAccountFound = userAccountRepository.findById(id).orElseThrow(NotFoundException::new);
         UserAccount userAccountGet = UserAccountReceiveDto.dtoToEntity();
         userAccountFound.setUsername(userAccountGet.getUsername());
-        userAccountFound.setPassword(userAccountGet.getPassword());
         userAccountFound.setPp(userAccountGet.getPp());
         return userAccountRepository.save(userAccountFound).entityToDto();
     }

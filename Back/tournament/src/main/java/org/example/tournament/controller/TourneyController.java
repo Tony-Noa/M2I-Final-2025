@@ -3,6 +3,7 @@ package org.example.tournament.controller;
 import jakarta.validation.Valid;
 import org.example.tournament.dto.tourney.TourneyReceiveDto;
 import org.example.tournament.dto.tourney.TourneyResponseDto;
+import org.example.tournament.dto.userAccount.UserAccountReceiveDto;
 import org.example.tournament.service.TourneyService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -11,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("api/tourney")
+@RequestMapping("tourney")
 
 public class TourneyController {
 
@@ -19,7 +20,7 @@ public class TourneyController {
 
     public TourneyController(TourneyService tourneyService){this.tourneyService = tourneyService;}
 
-    @GetMapping("/tourneys")
+    @GetMapping("/all")
     public ResponseEntity<List<TourneyResponseDto>> getAll(){ return ResponseEntity.ok(tourneyService.get());}
 
     @GetMapping("/{id}")

@@ -11,13 +11,13 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("api/gamecategory")
+@RequestMapping("gamecategory")
 public class GameCategoryController {
     private GameCategoryService gameCategoryService;
 
     public GameCategoryController(GameCategoryService gameCategoryService){this.gameCategoryService = gameCategoryService;}
 
-    @GetMapping("/gamecategories")
+    @GetMapping("/all")
     public ResponseEntity<List<GameCategoryResponseDto>> getAll(){ return ResponseEntity.ok(gameCategoryService.get());}
 
     @GetMapping("/{id}")

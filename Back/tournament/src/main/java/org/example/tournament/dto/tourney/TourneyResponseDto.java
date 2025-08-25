@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.example.tournament.entity.Tformat;
 
 import java.time.LocalDate;
 
@@ -16,13 +17,13 @@ public class TourneyResponseDto {
 
     private int id;
     private String name;
-    private String type;
+    private String format;
     private LocalDate creationDate;
     private LocalDate startDate;
     private LocalDate signStartDate;
     private LocalDate signEndDate;
     private String gameCategory;
-    private int founderId;
+    private int userAccountId;
 
 
 }

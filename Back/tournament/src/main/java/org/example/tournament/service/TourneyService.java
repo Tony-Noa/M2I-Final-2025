@@ -1,6 +1,5 @@
 package org.example.tournament.service;
 
-import org.apache.catalina.User;
 import org.example.tournament.dto.tourney.TourneyReceiveDto;
 import org.example.tournament.dto.tourney.TourneyResponseDto;
 import org.example.tournament.entity.GameCategory;
@@ -28,13 +27,12 @@ public class TourneyService {
         this.gameCategoryRepository = gameCategoryRepository;
     }
 
-    public TourneyResponseDto create (TourneyReceiveDto tourneyReceiveDto, int founderId, int gameCategoryId){
-        UserAccount founder = userAccountRepository.findById(founderId).orElseThrow(NotFoundException::new);
-        tourneyReceiveDto.setFounder(founder);
-        GameCategory gameCategory = gameCategoryRepository.findById(gameCategoryId).orElseThrow(NotFoundException::new);
-        tourneyReceiveDto.setGameCategory(gameCategory);
-        founder.getCreatedTourneys().add(tourneyReceiveDto.dtoToEntity());
-        return tourneyRepository.save(tourneyReceiveDto.dtoToEntity()).entityToDto();
+    public TourneyResponseDto create (TourneyReceiveDto tourneyReceiveDto){
+        UserAccount founder = userAccountRepository.findById(tourneyReceiveDto.getFounderId()).orElseThrow(NotFoundException::new);
+        GameCategory gameCategory = gameCategoryRepository.findById(tourneyReceiveDto.getGameCategoryId()).orElseThrow(NotFoundException::new);
+        founder.getCreatedTourneys().add(tourneyReceiveDto.dtoToEntity(gameCategoryRepository, userAccountRepository));
+        gameCategory.getTourneys().add(tourneyReceiveDto.dtoToEntity(gameCategoryRepository, userAccountRepository));
+        return tourneyRepository.save(tourneyReceiveDto.dtoToEntity(gameCategoryRepository, userAccountRepository)).entityToDto();
     }
 
     public TourneyResponseDto get(int id){
@@ -47,9 +45,9 @@ public class TourneyService {
 
     public TourneyResponseDto update(int id, TourneyReceiveDto tourneyReceiveDto){
         Tourney tourneyFound = tourneyRepository.findById(id).orElseThrow(NotFoundException::new);
-        Tourney tourneyGet = tourneyReceiveDto.dtoToEntity();
+        Tourney tourneyGet = tourneyReceiveDto.dtoToEntity(gameCategoryRepository, userAccountRepository);
         tourneyFound.setName(tourneyGet.getName());
-        tourneyFound.setType(tourneyGet.getType());
+        tourneyFound.setFormat(tourneyGet.getFormat());
         //tourneyFound.setCreationDate(tourneyGet.getCreationDate());
         tourneyFound.setStartDate(tourneyGet.getStartDate());
         tourneyFound.setSignStartDate(tourneyGet.getSignStartDate());
@@ -61,5 +59,21 @@ public class TourneyService {
     public void delete(int id){
         tourneyRepository.deleteById(id);
     }
+
+/*
+    public TourneyResponseDto addplayer(int id, TourneyReceiveDto tourneyReceiveDto){
+        Tourney tourneyFound = tourneyRepository.findById(id).orElseThrow(NotFoundException::new);
+        Tourney tourneyGet = tourneyReceiveDto.dtoToEntity(gameCategoryRepository, userAccountRepository);
+        tourneyFound.setName(tourneyGet.getName());
+        tourneyFound.setFormat(tourneyGet.getFormat());
+        //tourneyFound.setCreationDate(tourneyGet.getCreationDate());
+        tourneyFound.setStartDate(tourneyGet.getStartDate());
+        tourneyFound.setSignStartDate(tourneyGet.getSignStartDate());
+        tourneyFound.setSignEndDate(tourneyGet.getSignEndDate());
+
+        return tourneyRepository.save(tourneyFound).entityToDto();
+    }
+
+ */
 
 }

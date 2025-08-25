@@ -1,18 +1,15 @@
 package org.example.tournament.dto.tourney;
 
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToMany;
-import jakarta.persistence.ManyToOne;
+
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Pattern;
-
+import org.example.tournament.exception.NotFoundException;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.example.tournament.entity.GameCategory;
-import org.example.tournament.entity.Tourney;
-import org.example.tournament.entity.UserAccount;
+import org.example.tournament.entity.*;
+import org.example.tournament.repository.GameCategoryRepository;
+import org.example.tournament.repository.UserAccountRepository;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -27,38 +24,50 @@ public class TourneyReceiveDto {
 
     private String name;
 
-    private String type;
+    private String format;
 
     @Pattern(regexp = "[0-9]{4}[-|\\/]{1}[0-9]{2}[-|\\/]{1}[0-9]{2}" , message = "Date should be as yyyy-MM-dd format!")
-    private LocalDate creationDate;
+    private String creationDate;
 
     @Pattern(regexp = "[0-9]{4}[-|\\/]{1}[0-9]{2}[-|\\/]{1}[0-9]{2}" , message = "Date should be as yyyy-MM-dd format!")
-    private LocalDate startDate;
+    private String startDate;
 
     @Pattern(regexp = "[0-9]{4}[-|\\/]{1}[0-9]{2}[-|\\/]{1}[0-9]{2}" , message = "Date should be as yyyy-MM-dd format!")
-    private LocalDate signStartDate;
+    private String signStartDate;
 
     @Pattern(regexp = "[0-9]{4}[-|\\/]{1}[0-9]{2}[-|\\/]{1}[0-9]{2}" , message = "Date should be as yyyy-MM-dd format!")
-    private LocalDate signEndDate;
+    private String signEndDate;
 
-    @NotEmpty(message = "Please input a valid founder")
-    private UserAccount founder;
+    //@NotEmpty(message = "Please input a valid founder")
+    //private int founderId;
+    private int founderId;
+    //private UserAccount Founder;
 
-    private GameCategory gameCategory;
+    private int gameCategoryId;
+    //private GameCategory gameCategory;
 
-    public Tourney dtoToEntity() {
+    private List<UserAccount> players;
+
+    private List<Match> matches;
+
+    public Tourney dtoToEntity(GameCategoryRepository gameCategoryRepository, UserAccountRepository userAccountRepository) {
 
         DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
         return Tourney.builder()
                 .name(getName())
-                .type(getType())
-                .creationDate(getCreationDate())
-                .startDate(getStartDate())
-                .signStartDate(getSignEndDate())
-                .signEndDate(getSignEndDate())
-                .gameCategory(getGameCategory())
-                .founder(getFounder())
+                .format(Tformat.valueOf(format))
+                .creationDate(LocalDate.parse(getCreationDate(), dateTimeFormatter))
+                .startDate(LocalDate.parse(getStartDate(), dateTimeFormatter))
+                .signStartDate(LocalDate.parse(getStartDate(), dateTimeFormatter))
+                .signEndDate(LocalDate.parse(getSignEndDate(), dateTimeFormatter))
+                .gameCategory(gameCategoryRepository.findById(gameCategoryId).orElseThrow(NotFoundException::new))
+                       //.gameCategory(getGameCategory())
+                .founder(userAccountRepository.findById(founderId).orElseThrow(NotFoundException::new))
+                //.founder(userAccountRepository.findById(founderId).orElseThrow(NotFoundException::new))
+                       //.founder(getFounder())
+                //.players(getPlayers())
+                //.matches(getMatches())
                 .build();
     }
 }

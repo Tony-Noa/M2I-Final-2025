@@ -1,10 +1,7 @@
 package org.example.tournament.entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.example.tournament.dto.tourney.TourneyResponseDto;
 
 import java.time.LocalDate;
@@ -24,7 +21,7 @@ public class Tourney {
     private int tourneyId;
 
     private String name;
-    private String type;
+    private Tformat format;
     private LocalDate creationDate;
     private LocalDate startDate;
     private LocalDate signStartDate;
@@ -35,7 +32,7 @@ public class Tourney {
     private GameCategory gameCategory;
 
     @ManyToOne(cascade ={CascadeType.PERSIST,CascadeType.REFRESH})
-    @JoinColumn(name = "userAccountId")
+    @JoinColumn(name = "founderId")
     private UserAccount founder;
 
     @ManyToMany(mappedBy = "joinedTourneys")
@@ -48,13 +45,13 @@ public class Tourney {
         return TourneyResponseDto.builder()
                 .name(getName())
                 .id(getTourneyId())
-                .type(getType())
+                .format(String.valueOf(format))
                 .creationDate(getCreationDate())
                 .startDate(getStartDate())
                 .signStartDate(getSignEndDate())
                 .signEndDate(getSignEndDate())
                 .gameCategory(getGameCategory().getName())
-                .founderId(getFounder().getUserAccountId())
+                .userAccountId(getFounder().getUserAccountId())
                 .build();
 
     }
