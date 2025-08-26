@@ -62,10 +62,7 @@ public class TourneyReceiveDto {
                 .signStartDate(LocalDate.parse(getStartDate(), dateTimeFormatter))
                 .signEndDate(LocalDate.parse(getSignEndDate(), dateTimeFormatter))
                 .gameCategory(gameCategoryRepository.findById(gameCategoryId).orElseThrow(NotFoundException::new))
-                       //.gameCategory(getGameCategory())
                 .founder(userAccountRepository.findById(founderId).orElseThrow(NotFoundException::new))
-                //.founder(userAccountRepository.findById(founderId).orElseThrow(NotFoundException::new))
-                       //.founder(getFounder())
                 //.players(getPlayers())
                 //.matches(getMatches())
                 .build();

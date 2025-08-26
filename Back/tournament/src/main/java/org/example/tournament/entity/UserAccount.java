@@ -6,8 +6,10 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.example.tournament.dto.tourney.TourneyResponseDto;
 import org.example.tournament.dto.userAccount.UserAccountResponseDto;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -28,7 +30,7 @@ public class UserAccount {
 
     //@OneToMany(mappedBy = "matchId")
     @Transient // Le transient permet d'ignorer l'attribut matches, on veut le recuperer pour l'envoyer au front parce qu'il faut tjr une relation quand on crée un nouvel objet
-    private List<Match> matches;
+    private List<Match> matches = new ArrayList<Match>();
 
 
     @OneToMany(mappedBy = "founder")
@@ -43,9 +45,21 @@ public class UserAccount {
 
 
     public UserAccountResponseDto entityToDto(){
+        List<TourneyResponseDto> joinedTourneysDto = new ArrayList<>();
+        for (Tourney t : joinedTourneys){
+            joinedTourneysDto.add(t.entityToDto());
+        }
+
+        List<TourneyResponseDto> createdTourneysDto = new ArrayList<>();
+        for (Tourney t : createdTourneys){
+            createdTourneysDto.add(t.entityToDto());
+        }
         return UserAccountResponseDto.builder()
                 .id(getUserAccountId())
                 .username(getUsername())
+
+                .joinedTourneys(joinedTourneysDto)
+                .createdTourneys(createdTourneysDto)
              //   .password(getPassword())
                 .pp(getPp())
                 .build();

@@ -1,9 +1,12 @@
 package org.example.tournament.service;
 
+import org.example.tournament.dto.tourney.TourneyReceiveDto;
+import org.example.tournament.dto.tourney.TourneyResponseDto;
 import org.example.tournament.dto.userAccount.UserAccountReceiveDto;
 import org.example.tournament.dto.userAccount.UserAccountResponseDto;
 import org.example.tournament.entity.Tourney;
 import org.example.tournament.entity.UserAccount;
+import org.example.tournament.repository.TourneyRepository;
 import org.example.tournament.repository.UserAccountRepository;
 import org.springframework.stereotype.Service;
 
@@ -16,9 +19,11 @@ import java.util.List;
 public class UserAccountService {
 
     private final UserAccountRepository userAccountRepository;
+    private final TourneyRepository tourneyRepository;
 
-    public UserAccountService(UserAccountRepository userAccountRepository){
+    public UserAccountService(UserAccountRepository userAccountRepository, TourneyRepository tourneyRepository){
         this.userAccountRepository = userAccountRepository;
+        this.tourneyRepository = tourneyRepository;
     }
 
     public UserAccountResponseDto create (UserAccountReceiveDto UserAccountReceiveDto){
@@ -34,15 +39,26 @@ public class UserAccountService {
         return userAccountRepository.findAll().stream().map(UserAccount::entityToDto).toList();
     }
 
-    public UserAccountResponseDto update(int id, UserAccountReceiveDto UserAccountReceiveDto){
+    public UserAccountResponseDto update(int id, UserAccountReceiveDto userAccountReceiveDto){
         UserAccount userAccountFound = userAccountRepository.findById(id).orElseThrow(NotFoundException::new);
-        UserAccount userAccountGet = UserAccountReceiveDto.dtoToEntity();
+        UserAccount userAccountGet = userAccountReceiveDto.dtoToEntity();
         userAccountFound.setUsername(userAccountGet.getUsername());
+        userAccountFound.setPassword(userAccountGet.getPassword());
         userAccountFound.setPp(userAccountGet.getPp());
         return userAccountRepository.save(userAccountFound).entityToDto();
     }
 
     public void delete(int id){
         userAccountRepository.deleteById(id);
+    }
+
+    public UserAccountResponseDto register(int userId, int tourneyId){
+        UserAccount playerFound = userAccountRepository.findById(userId).orElseThrow(NotFoundException::new);
+        Tourney tourney = tourneyRepository.findById(tourneyId).orElseThrow(NotFoundException::new);
+
+        playerFound.getJoinedTourneys().add(tourney);
+        tourney.getPlayers().add(playerFound);
+
+        return userAccountRepository.save(playerFound).entityToDto();
     }
 }
