@@ -12,8 +12,8 @@ import java.util.List;
 
 
 @RestController
-@RequestMapping("useraccount")
-
+    @RequestMapping("useraccount")
+@CrossOrigin(origins = "*", methods = {RequestMethod.GET, RequestMethod.POST})
 public class UserAccountController {
     private UserAccountService userAccountService;
 

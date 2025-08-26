@@ -6,9 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.example.tournament.dto.userAccount.UserAccountResponseDto;
 import org.example.tournament.entity.Tformat;
-
 import java.time.LocalDate;
-import java.util.List;
 
 @NoArgsConstructor
 @AllArgsConstructor

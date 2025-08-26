@@ -8,6 +8,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.example.tournament.dto.tourney.TourneyResponseDto;
 import org.example.tournament.dto.userAccount.UserAccountResponseDto;
+import org.example.tournament.enums.Role;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,11 +25,14 @@ public class UserAccount {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int userAccountId;
 
+    private String email;
     private String username;
     private String password;
     private String pp; // Profile picture
+    private Role role;
 
     //@OneToMany(mappedBy = "matchId")
+
     @Transient // Le transient permet d'ignorer l'attribut matches, on veut le recuperer pour l'envoyer au front parce qu'il faut tjr une relation quand on crée un nouvel objet
     private List<Match> matches = new ArrayList<Match>();
 
@@ -62,6 +66,7 @@ public class UserAccount {
                 .createdTourneys(createdTourneysDto)
              //   .password(getPassword())
                 .pp(getPp())
+                .email(getEmail())
                 .build();
 
     }

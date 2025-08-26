@@ -22,6 +22,8 @@ UserAccountResponseDto {
     private int id;
 
     private String username;
+    private String email;
+    private int role;
     // private String password; // We don't really want to see the other's passwords right
     private String pp; // Profile picture
     private List<TourneyResponseDto> createdTourneys;
