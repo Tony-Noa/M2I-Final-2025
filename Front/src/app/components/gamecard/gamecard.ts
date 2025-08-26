@@ -1,3 +1,4 @@
+import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
 
@@ -6,11 +7,12 @@ import { Component, Input } from '@angular/core';
   standalone: true,
   templateUrl: './gamecard.html',
   styleUrls: ['./gamecard.css'],
-  imports: [CommonModule],
+  imports: [CommonModule, RouterModule],
 })
 
 export class Gamecard {
   @Input() game!: {
+    slug: string;    
     title: string;
     image: string;
     meta: string;

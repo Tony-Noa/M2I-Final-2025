@@ -1,0 +1,29 @@
+
+<app-header-hero-game
+[title]="game?.title"
+[description]="game?.description"
+[heroImages]="game?.heroImages || []"
+[logo]="game?.logo"
+></app-header-hero-game>
+
+
+<section *ngIf="game; else notFound" class="game-info">
+
+   <div class="game-header-overlay">
+  <h1 class="game-title">{{ game.title }}</h1>
+</div> 
+
+  <h2 class="tournaments-heading">Tournaments</h2>
+
+  <div class="tournament-cards-container">
+    <app-tournamentcard
+      *ngFor="let tournament of game.tournaments"
+      [tournament]="tournament"
+    ></app-tournamentcard>
+  </div>
+</section>
+
+<ng-template #notFound>
+  <p>Sorry, game not found.</p>
+</ng-template>
+

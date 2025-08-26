@@ -1,0 +1,23 @@
+<a 
+  [routerLink]="['/tournament', tournament.slug]" 
+  [state]="{ tournament: tournament }"
+  class="tournament-card no-underline"
+>
+  <img [src]="tournament.image" [alt]="tournament.title" />
+  <div class="tournament-card-content">
+    <div>
+      <div class="tournament-card-title-row">
+        <h3 class="tournament-card-title">{{ tournament.title }}</h3>
+        <div class="tournament-card-icon">
+          <img [src]="tournament.gameIcon" alt="game icon" />
+        </div>
+      </div>
+      <div class="tournament-card-subtitle">{{ tournament.host }}</div>
+      <div class="tournament-card-date">{{ tournament.date }}</div>
+    </div>
+    <div class="tournament-card-info">
+      <div>Location: {{ tournament.location }}</div>
+      <div>Attendees: {{ tournament.attendees }}</div>
+    </div>
+  </div>
+</a>

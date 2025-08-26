@@ -1,14 +1,22 @@
-import { Component, signal } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
-import { Navbar } from './components/navbar/navbar';
+import { Component } from '@angular/core';
+import { Router, NavigationEnd, RouterOutlet } from '@angular/router';
+import { Navbar } from "./components/navbar/navbar";
+
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet,Navbar],
-  templateUrl: './app.html',    
-  styleUrls: ['./app.css']
+  templateUrl: './app.html',
+  styleUrls: ['./app.css'],
+  imports: [RouterOutlet, Navbar]
 })
 export class App {
-  protected readonly title = signal('my-angular-app');
-}
+  isGameDetail = false;
 
+  constructor(private router: Router) {
+    this.router.events.subscribe(event => {
+      if (event instanceof NavigationEnd) {
+        this.isGameDetail = event.url.includes('/games/');
+      }
+    });
+  }
+}
