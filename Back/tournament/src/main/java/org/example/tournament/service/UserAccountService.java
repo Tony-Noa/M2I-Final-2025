@@ -51,6 +51,14 @@ public class UserAccountService {
         userAccountRepository.deleteById(id);
     }
 
+    public UserAccountResponseDto getUserByEmail(String email){
+        Optional<UserAccount> userAppOptional = userAccountRepository.findByEmail(email);
+        if(userAppOptional.isPresent()){
+            return userAppOptional.get().entityToDto();
+        }
+        throw new NotFoundException();
+    }
+
     public RegisterResponseDto registerUtilisateur(RegisterRequestDto registerRequestDto) throws UserAlreadyExistException {
         Optional<UserAccount> userAppOptional = userAccountRepository.findByEmail(registerRequestDto.getEmail());
         if(userAppOptional.isEmpty()){

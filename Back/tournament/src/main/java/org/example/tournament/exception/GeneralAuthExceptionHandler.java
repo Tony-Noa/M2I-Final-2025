@@ -19,7 +19,7 @@ public class GeneralAuthExceptionHandler {
 
     @ExceptionHandler(NotFoundException.class)
     public ResponseEntity<LoginResponseDto> notFoundExceptionHandler (NotFoundException ex){
-        LoginResponseDto loginResponseDto = new LoginResponseDto("NotFound");
+        LoginResponseDto loginResponseDto = new LoginResponseDto(-1,"NotFound");
         return new ResponseEntity<>(loginResponseDto,HttpStatus.OK);
     }
 }
