@@ -17,4 +17,6 @@ public class GameCategoryResponseDto {
     private String name;
     private String icon;
     private String logo;
+
+
 }

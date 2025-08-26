@@ -5,4 +5,3 @@ SELECT * FROM tourney;
 SELECT * FROM useraccount;
 SELECT * FROM gamecategory;
 ALTER TABLE gamecategory RENAME COLUMN game_id to game_category_id;
-ALTER TABLE tourney DROP COLUMN founder_id;
