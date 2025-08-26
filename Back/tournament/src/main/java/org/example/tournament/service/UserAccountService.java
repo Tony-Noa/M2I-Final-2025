@@ -1,6 +1,7 @@
 package org.example.tournament.service;
 
 import org.example.tournament.dto.security.RegisterRequestDto;
+import org.example.tournament.dto.security.RegisterResponseDto;
 import org.example.tournament.dto.userAccount.UserAccountReceiveDto;
 import org.example.tournament.dto.userAccount.UserAccountResponseDto;
 import org.example.tournament.entity.Tourney;
@@ -50,14 +51,15 @@ public class UserAccountService {
         userAccountRepository.deleteById(id);
     }
 
-    public UserAccount enregistrerUtilisateur(RegisterRequestDto registerRequestDto) throws UserAlreadyExistException {
+    public RegisterResponseDto registerUtilisateur(RegisterRequestDto registerRequestDto) throws UserAlreadyExistException {
         Optional<UserAccount> userAppOptional = userAccountRepository.findByEmail(registerRequestDto.getEmail());
         if(userAppOptional.isEmpty()){
-            UserAccount user = UserAccount.builder().email(registerRequestDto.getEmail())
+            UserAccount user = UserAccount.builder()
+                    .email(registerRequestDto.getEmail())
                     .username(registerRequestDto.getUsername())
                     .role((registerRequestDto.getRole()==0)? Role.USER : Role.ADMIN )
-                    .pp(RegisterRequestDto.get()).build();
-            return userAccountRepository.save(user);
+                    .password(registerRequestDto.getPassword()).build();
+            return RegisterResponseDto.entityToDto(userAccountRepository.save(user));
         }
         throw new UserAlreadyExistException();
     }

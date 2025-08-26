@@ -30,7 +30,7 @@ public class UserAccount {
     private Role role;
 
     //@OneToMany(mappedBy = "matchId")
-    @Transient // Le transient permet d'ignorer l'attribut matches, on veut le recuperer pour l'envoyer au front parce qu'il faut tjr une relation quand on crée un nouvel objet
+    @Transient // Le transient permet d'ignorer l'attribut matches, on veut le recuperer pour l'envoyer au front parce qu'il faut tjr une relation quand on crée un nouvel objet.
     private List<Match> matches;
 
 
