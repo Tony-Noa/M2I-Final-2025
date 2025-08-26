@@ -4,6 +4,7 @@ import org.example.tournament.dto.security.LoginRequestDto;
 import org.example.tournament.dto.security.LoginResponseDto;
 import org.example.tournament.dto.security.RegisterRequestDto;
 import org.example.tournament.dto.security.RegisterResponseDto;
+import org.example.tournament.dto.userAccount.UserAccountResponseDto;
 import org.example.tournament.entity.UserAccount;
 import org.example.tournament.exception.NotFoundException;
 import org.example.tournament.exception.UserAlreadyExistException;
@@ -43,7 +44,8 @@ public class UserAuthController {
         try {
             Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(loginRequestDTO.getEmail(), loginRequestDTO.getPassword()));
             SecurityContextHolder.getContext().setAuthentication(authentication);
-            return ResponseEntity.ok(LoginResponseDto.builder().token(generator.generateToken(authentication)).build());
+            UserAccountResponseDto user = userAccountService.getUserByEmail(loginRequestDTO.getEmail());
+            return ResponseEntity.ok(LoginResponseDto.builder().id(user.getId()).token(generator.generateToken(authentication)).build());
         }catch (Exception ex) {
             throw new NotFoundException();
         }
