@@ -1,0 +1,96 @@
+
+  
+  /* Each card */
+  .game-card {
+    width: 250px;
+    background-color: #fff;
+    flex-shrink: 0;
+    border-radius: 6px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+    transition: box-shadow 0.3s ease;
+    box-sizing: border-box;
+    height: 100%;
+  }
+  
+  .game-card:hover {
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+  }
+  
+  .game-card img {
+    width: 100%;
+    height: 140px;
+    object-fit: cover;
+  }
+  
+  .game-card-content {
+    padding: 16px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  
+  /* Title + icon container */
+  .game-card-title-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 6px;
+  }
+  
+  .game-card-title {
+    font-weight: bold;
+    font-size: 1.1rem;
+    margin: 0;
+    flex-grow: 1;
+  }
+  
+  .game-card-icon img {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+  }
+  
+  /* Subtitle / meta text */
+  .game-card-subtitle {
+    font-size: 0.9rem;
+    color: #666;
+    margin-bottom: 12px;
+  }
+  
+
+  /* Additional info list */
+  .game-card-info {
+    font-size: 0.85rem;
+    color: #444;
+    margin-top: 8px;
+    line-height: 1.3;
+  }
+
+  :host {
+    display: block;
+    width: 220px;
+  }
+  
+  .gamecard {
+    width: 28%;
+    height: 330px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    background-color: white;
+  }
+  
+  .gamecard img {
+    width: 100%;
+    height: 140px;
+    object-fit: cover; 
+  }
+  

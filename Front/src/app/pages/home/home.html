@@ -1,0 +1,67 @@
+  <!-- Same with the hero, potentially -->
+
+  <section class="hero-carousel">
+    <div class="hero-images">
+        @for (image of heroImages; track image; let i = $index) {
+            <img
+              [src]="image"
+              [alt]="'Hero image ' + (i + 1)"
+              [class.active]="i === currentIndex"
+              [class.previous]="i === previousIndex"
+            />
+          }
+               
+    </div>
+  
+    <div class="hero-overlay">
+      <div class="hero-content">
+        <h2>WELCOME TO GAMEZONE</h2>
+        <p>
+          The place where you can easily make tournament brackets for many games supported, and more to come.
+        </p>
+        <button>Create a tournament</button>
+      </div>
+    </div>
+    
+    <div class="carousel-dots">
+        @for (image of heroImages; track image; let i = $index) {
+          <span
+            [class.active]="i === currentIndex"
+            (click)="goToImage(i)"
+          ></span>
+        }
+      </div>
+      
+    <button class="arrow left" (click)="prevImage()">&#10094;</button>
+    <button class="arrow right" (click)="nextImage()">&#10095;</button>
+  </section>
+  
+  
+  <section class="games-section">
+    <div class="section-block">
+      <div class="section-header">
+        <h2 class="section-title">Featured Games</h2>
+        <span class="section-link">Show all games</span>
+      </div>
+      <div class="game-list">
+        <app-gamecard *ngFor="let game of games" [game]="game"></app-gamecard>
+      </div>
+    </div>
+  </section>
+  
+  <section class="tournaments-section">
+    <div class="section-block">
+      <div class="section-header">
+        <h3 class="section-title">Featured Tournaments</h3>
+        <span class="section-link">Show all tournaments</span>
+      </div>
+      <div class="game-list">
+        <app-gamecard *ngFor="let game of games" [game]="game"></app-gamecard>
+      </div>
+    </div>
+  </section>
+  
+  <footer>
+    <p>&copy; 2025 TourneyZone. All rights reserved.</p>
+  </footer>
+  
