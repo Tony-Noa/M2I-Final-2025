@@ -17,7 +17,9 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
-@RequestMapping("/api/auth")
+import java.io.Console;
+
+@RequestMapping("/api/public/auth")
 @RestController
 @CrossOrigin(origins = "*", methods = {RequestMethod.GET, RequestMethod.POST})
 public class UserAuthController {
@@ -27,7 +29,7 @@ public class UserAuthController {
     private final PasswordEncoder passwordEncoder;
     private final JWTGenerator generator;
 
-    public UserAppController(AuthenticationManager authenticationManager, UserAccountService userAccountService, PasswordEncoder passwordEncoder, JWTGenerator generator) {
+    public UserAuthController(AuthenticationManager authenticationManager, UserAccountService userAccountService, PasswordEncoder passwordEncoder, JWTGenerator generator) {
         this.authenticationManager = authenticationManager;
         this.userAccountService = userAccountService;
         this.passwordEncoder = passwordEncoder;
@@ -37,6 +39,7 @@ public class UserAuthController {
 
     @PostMapping("login")
     public ResponseEntity<LoginResponseDto> login(@RequestBody LoginRequestDto loginRequestDTO) throws NotFoundException {
+
         try {
             Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(loginRequestDTO.getEmail(), loginRequestDTO.getPassword()));
             SecurityContextHolder.getContext().setAuthentication(authentication);
@@ -49,7 +52,7 @@ public class UserAuthController {
     @PostMapping("register")
     public ResponseEntity<RegisterResponseDto> register(@RequestBody RegisterRequestDto registerRequestDTO) throws UserAlreadyExistException {
         registerRequestDTO.setPassword(passwordEncoder.encode(registerRequestDTO.getPassword()));
-        UserAccount userApp = userAccountService.enregistrerUtilisateur(registerRequestDTO);
-        return ResponseEntity.ok(RegisterResponseDto.builder().id(userApp.getId_user()).email(userApp.getEmail()).lastname(userApp.getLastname()).firstname(userApp.getFirstname()).phone(userApp.getPhone()).role(userApp.getRole().ordinal()).build());
+        RegisterResponseDto userAccount = userAccountService.registerUtilisateur(registerRequestDTO);
+        return ResponseEntity.ok(userAccount);
     }
 }
