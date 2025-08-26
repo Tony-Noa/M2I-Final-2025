@@ -22,8 +22,8 @@ public class UserAccountReceiveDto {
     private int role;
     //private List<Match> matches; ici je veux pas recevoir les matchs, juste les recuperer quand je les renvoie
 
-    //private List<Tourney> createdTourneys;
-    //private List<Tourney> joinedTourneys;
+    private List<Tourney> createdTourneys;
+    private List<Tourney> joinedTourneys;
 
     public UserAccount dtoToEntity() {
         return UserAccount.builder()

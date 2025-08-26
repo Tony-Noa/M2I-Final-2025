@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.example.tournament.dto.tourney.TourneyResponseDto;
 import org.example.tournament.entity.Tourney;
 
 import java.util.List;
@@ -25,6 +26,6 @@ UserAccountResponseDto {
     private int role;
     // private String password; // We don't really want to see the other's passwords right
     private String pp; // Profile picture
-    private List<Tourney> createdTourneys;
-    private List<Tourney> joinedTourneys;
+    private List<TourneyResponseDto> createdTourneys;
+    private List<TourneyResponseDto> joinedTourneys;
 }

@@ -1,11 +1,18 @@
 package org.example.tournament.entity;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.*;
 import lombok.*;
 import org.example.tournament.dto.tourney.TourneyResponseDto;
+
+import org.example.tournament.dto.userAccount.UserAccountResponseDto;
+
 import org.example.tournament.enums.Tformat;
 
+
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -14,6 +21,7 @@ import java.util.List;
 @AllArgsConstructor
 @Builder
 @Data
+
 
 public class Tourney {
 
@@ -52,7 +60,7 @@ public class Tourney {
                 .signStartDate(getSignEndDate())
                 .signEndDate(getSignEndDate())
                 .gameCategory(getGameCategory().getName())
-                .userAccountId(getFounder().getUserAccountId())
+                .founderId(getFounder().getUserAccountId())
                 .build();
 
     }

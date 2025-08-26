@@ -33,8 +33,13 @@ public class UserAccountController {
     }
 
     @PutMapping("/{id}") //put met une nouvelle donnée
-    public ResponseEntity<UserAccountResponseDto> update (@PathVariable int id, @RequestBody UserAccountReceiveDto UserAccountReceiveDto){
-        return ResponseEntity.ok(userAccountService.update(id, UserAccountReceiveDto));
+    public ResponseEntity<UserAccountResponseDto> update (@PathVariable int id, @RequestBody UserAccountReceiveDto userAccountReceiveDto){
+        return ResponseEntity.ok(userAccountService.update(id, userAccountReceiveDto));
+    }
+
+    @PutMapping("/{userId}/{tourneyId}") //put met une nouvelle donnée
+    public ResponseEntity<UserAccountResponseDto> register (@PathVariable Integer userId, @PathVariable Integer tourneyId){
+        return ResponseEntity.ok(userAccountService.register(userId, tourneyId));
     }
 
     @DeleteMapping("/{id}")

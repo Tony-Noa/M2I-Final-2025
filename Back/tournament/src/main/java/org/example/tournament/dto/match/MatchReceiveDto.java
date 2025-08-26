@@ -22,8 +22,8 @@ public class MatchReceiveDto {
 
     private int p1Id;
     private int p2Id;
-    private int resultP1;
-    private int resultP2;
+    private int resultP1 = 0;
+    private int resultP2 = 0;
     private int round;
 
     //private Tourney tourney;

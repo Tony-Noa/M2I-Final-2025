@@ -60,20 +60,8 @@ public class TourneyService {
         tourneyRepository.deleteById(id);
     }
 
-/*
-    public TourneyResponseDto addplayer(int id, TourneyReceiveDto tourneyReceiveDto){
-        Tourney tourneyFound = tourneyRepository.findById(id).orElseThrow(NotFoundException::new);
-        Tourney tourneyGet = tourneyReceiveDto.dtoToEntity(gameCategoryRepository, userAccountRepository);
-        tourneyFound.setName(tourneyGet.getName());
-        tourneyFound.setFormat(tourneyGet.getFormat());
-        //tourneyFound.setCreationDate(tourneyGet.getCreationDate());
-        tourneyFound.setStartDate(tourneyGet.getStartDate());
-        tourneyFound.setSignStartDate(tourneyGet.getSignStartDate());
-        tourneyFound.setSignEndDate(tourneyGet.getSignEndDate());
 
-        return tourneyRepository.save(tourneyFound).entityToDto();
-    }
 
- */
+
 
 }
