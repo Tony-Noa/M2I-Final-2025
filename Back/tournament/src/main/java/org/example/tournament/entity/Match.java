@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 import org.example.tournament.dto.match.MatchResponseDto;
 
 @Entity
-@Table(name="matches")
+@Table(name="tournamentmatch")
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder

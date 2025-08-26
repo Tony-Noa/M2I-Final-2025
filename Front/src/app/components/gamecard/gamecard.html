@@ -1,0 +1,18 @@
+<div class="game-card">
+    <img [src]="game.image" [alt]="game.title" />
+    <div class="game-card-content">
+      <div>
+        <div class="game-card-title-row">
+          <h3 class="game-card-title">{{ game.title }}</h3>
+          <div class="game-card-icon">
+            <img [src]="game.icon" alt="icon" />
+          </div>
+        </div>
+        <div class="game-card-subtitle">{{ game.meta }}</div>
+      </div>
+      <div class="game-card-info">
+        <div *ngFor="let info of game.additionalInfo">{{ info }}</div>
+      </div>
+    </div>
+  </div>
+  
