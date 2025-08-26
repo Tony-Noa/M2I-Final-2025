@@ -16,8 +16,10 @@ import java.util.List;
 public class UserAccountReceiveDto {
 
     private String username;
+    private String email;
     private String password;
     private String pp; // Profile picture
+    private int role;
     //private List<Match> matches; ici je veux pas recevoir les matchs, juste les recuperer quand je les renvoie
 
     //private List<Tourney> createdTourneys;

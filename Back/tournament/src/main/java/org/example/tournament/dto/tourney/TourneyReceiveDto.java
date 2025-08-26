@@ -1,8 +1,8 @@
 package org.example.tournament.dto.tourney;
 
 
-import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Pattern;
+import org.example.tournament.enums.Tformat;
 import org.example.tournament.exception.NotFoundException;
 import lombok.AllArgsConstructor;
 import lombok.Data;

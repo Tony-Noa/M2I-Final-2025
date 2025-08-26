@@ -12,6 +12,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("gamecategory")
+@CrossOrigin(origins = "*", methods = {RequestMethod.GET, RequestMethod.POST})
 public class GameCategoryController {
     private GameCategoryService gameCategoryService;
 

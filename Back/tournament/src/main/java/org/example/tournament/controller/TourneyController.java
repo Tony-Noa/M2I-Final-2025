@@ -13,7 +13,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("tourney")
-
+@CrossOrigin(origins = "*", methods = {RequestMethod.GET, RequestMethod.POST})
 public class TourneyController {
 
     private TourneyService tourneyService;

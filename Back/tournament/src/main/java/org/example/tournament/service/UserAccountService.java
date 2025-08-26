@@ -1,15 +1,19 @@
 package org.example.tournament.service;
 
+import org.example.tournament.dto.security.RegisterRequestDto;
 import org.example.tournament.dto.userAccount.UserAccountReceiveDto;
 import org.example.tournament.dto.userAccount.UserAccountResponseDto;
 import org.example.tournament.entity.Tourney;
 import org.example.tournament.entity.UserAccount;
+import org.example.tournament.enums.Role;
+import org.example.tournament.exception.UserAlreadyExistException;
 import org.example.tournament.repository.UserAccountRepository;
 import org.springframework.stereotype.Service;
 
 import org.example.tournament.exception.NotFoundException;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 
@@ -44,5 +48,17 @@ public class UserAccountService {
 
     public void delete(int id){
         userAccountRepository.deleteById(id);
+    }
+
+    public UserAccount enregistrerUtilisateur(RegisterRequestDto registerRequestDto) throws UserAlreadyExistException {
+        Optional<UserAccount> userAppOptional = userAccountRepository.findByEmail(registerRequestDto.getEmail());
+        if(userAppOptional.isEmpty()){
+            UserAccount user = UserAccount.builder().email(registerRequestDto.getEmail())
+                    .username(registerRequestDto.getUsername())
+                    .role((registerRequestDto.getRole()==0)? Role.USER : Role.ADMIN )
+                    .pp(RegisterRequestDto.get()).build();
+            return userAccountRepository.save(user);
+        }
+        throw new UserAlreadyExistException();
     }
 }

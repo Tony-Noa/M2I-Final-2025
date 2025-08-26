@@ -14,7 +14,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("match")
-
+@CrossOrigin(origins = "*", methods = {RequestMethod.GET, RequestMethod.POST})
 public class MatchController {
 
     private MatchService matchService;
