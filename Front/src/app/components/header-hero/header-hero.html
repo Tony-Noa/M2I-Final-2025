@@ -1,0 +1,33 @@
+<section class="hero-carousel">
+    <div class="hero-images">
+        <img
+          *ngFor="let image of heroImages; index as i"
+          [src]="image"
+          [alt]="'Hero image ' + (i + 1)"
+          [class.active]="i === currentIndex"
+          [class.previous]="i === previousIndex"
+          [class.slide-left]="i === previousIndex && slideDirection === 'left'"
+          [class.slide-right]="i === previousIndex && slideDirection === 'right'"
+        />
+      </div>
+  
+    <div class="hero-overlay">
+        <div class="hero-content">
+          <h2>{{ title }}</h2>
+          <p>{{ description }}</p>
+          <button (click)="createTournament()">Create a tournament</button>
+        </div>
+      </div>
+  
+    <div class="carousel-dots">
+      <span
+        *ngFor="let image of heroImages; let i = index"
+        [class.active]="i === currentIndex"
+        (click)="goToImage(i)"
+      ></span>
+    </div>
+  
+    <button class="arrow left" (click)="prevImage()">&#10094;</button>
+    <button class="arrow right" (click)="nextImage()">&#10095;</button>
+  </section>
+  
