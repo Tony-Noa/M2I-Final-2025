@@ -63,7 +63,7 @@ public class UserAccountService {
     }
 
 
-    public UserAccountResponseDto register(int userId, int tourneyId){
+    public UserAccountResponseDto register(int userId, int tourneyId) {
         UserAccount playerFound = userAccountRepository.findById(userId).orElseThrow(NotFoundException::new);
         Tourney tourney = tourneyRepository.findById(tourneyId).orElseThrow(NotFoundException::new);
 
@@ -72,6 +72,7 @@ public class UserAccountService {
 
         return userAccountRepository.save(playerFound).entityToDto();
 
+    }
       
     public UserAccountResponseDto getUserByEmail(String email){
         Optional<UserAccount> userAppOptional = userAccountRepository.findByEmail(email);

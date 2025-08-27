@@ -31,7 +31,7 @@ public class Match {
     private int resultP1;
     private int resultP2;
 
-    private int round;
+    private String position;
 
     @ManyToOne(cascade ={CascadeType.PERSIST,CascadeType.REFRESH})
     private Tourney tourney;
@@ -43,7 +43,7 @@ public class Match {
                 .p2Id(getP2().getUserAccountId())
                 .resultP1(getResultP1())
                 .resultP2(getResultP2())
-                .round(getRound())
+                .position(getPosition())
                 .tourneyId(getTourney().getTourneyId())
                 .build();
     }
