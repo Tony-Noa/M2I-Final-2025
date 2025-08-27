@@ -1,0 +1,206 @@
+.create-tournament-page {
+    position: relative;  
+    max-width: 700px;
+    margin: -90px auto 2rem auto; 
+    font-family: Arial, sans-serif;
+    color: #222;
+    background: #f9f9f9;
+    padding: 2rem 2.5rem;
+    border-radius: 12px;
+    box-shadow: 0 8px 13px rgba(0, 0, 0, 0.1);
+    z-index: 10;  
+  }
+  .hero {
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+  
+  .hero h1 {
+    font-size: 2.4rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    color: #007acc;
+  }
+  
+  .hero p {
+    font-size: 1.1rem;
+    color: #444;
+    line-height: 1.5;
+  }
+  
+  .tournament-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.6rem;
+  }
+  
+  .tournament-form label {
+    font-weight: 600;
+    font-size: 1rem;
+    margin-bottom: 0.4rem;
+    color: #333;
+  }
+  
+  .tournament-form input[type="text"],
+  .tournament-form input[type="number"],
+  .tournament-form select {
+    padding: 0.6rem 0.8rem;
+    font-size: 1rem;
+    border: 2px solid #ccc;
+    border-radius: 8px;
+    transition: border-color 0.3s ease;
+  }
+  
+  .tournament-form input[type="text"]:focus,
+  .tournament-form input[type="number"]:focus,
+  .tournament-form select:focus {
+    border-color: #007acc;
+    outline: none;
+  }
+  
+  .tournament-types {
+    display: flex;
+    gap: 1.2rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  
+  .type-card {
+    cursor: pointer;
+    border: 2px solid transparent;
+    border-radius: 10px;
+    padding: 1rem;
+    width: 180px;
+    background: white;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    user-select: none;
+  }
+  
+  .type-card:hover {
+    box-shadow: 0 6px 16px rgba(0, 122, 204, 0.25);
+  }
+  
+  .type-card.selected {
+    border-color: #007acc;
+    box-shadow: 0 6px 20px rgba(0, 122, 204, 0.4);
+  }
+  
+  .type-card h4 {
+    margin-bottom: 0.5rem;
+    font-weight: 700;
+    color: #005f99;
+  }
+  
+  .type-card img {
+    width: 100%;
+    height: 120px;
+    object-fit: contain;
+    margin-bottom: 0.6rem;
+    border-radius: 6px;
+  }
+  
+  .type-card p {
+    font-size: 0.9rem;
+    color: #666;
+    line-height: 1.3;
+  }
+  
+  button[type="submit"] {
+    max-width: 180px;
+    align-self: center;
+    padding: 0.75rem 1.6rem;
+    border-radius: 12px;
+    background-color: #007acc;
+    border: none;
+    color: white;
+    font-weight: 700;
+    font-size: 1.1rem;
+    cursor: pointer;
+    box-shadow: 0 5px 12px rgba(0, 122, 204, 0.5);
+    transition: background-color 0.3s ease;
+  }
+  
+  button[type="submit"]:hover:not(:disabled) {
+    background-color: #005f99;
+  }
+  
+  button[type="submit"]:disabled {
+    background-color: #a0a0a0;
+    cursor: not-allowed;
+    box-shadow: none;
+  }
+  
+  ::ng-deep .tournament-hero-wrapper app-header-hero-game h1 {
+    font-size: 3rem;
+    color: #fff;
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
+  }
+  
+  ::ng-deep .tournament-hero-wrapper app-header-hero-game p {
+    font-size: 1.2rem;
+    color: #eee;
+    text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
+  }
+  
+
+  .custom-select {
+    position: relative;
+    width: 260px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    user-select: none;
+    background-color: white;
+    transition: border-color 0.3s ease;
+  }
+  
+  .selected-game {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    cursor: pointer;
+  }
+  
+  .selected-game img {
+    width: 24px;
+    height: 24px;
+    margin-right: 8px;
+    object-fit: contain;
+  }
+  
+  .options {
+    position: absolute;
+    background: white;
+    border: 1px solid #ccc;
+    width: 100%;
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transition: max-height 0.3s ease, opacity 0.3s ease;
+    z-index: 999;
+    border-radius: 0 0 8px 8px;
+  }
+  
+  .custom-select.open .options {
+    max-height: 400px;
+    opacity: 1;
+  }
+  
+  .option {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+  }
+  
+  .option img {
+    width: 24px;
+    height: 24px;
+    margin-right: 8px;
+  }
+  
+  .option:hover {
+    background-color: #f0f0f0;
+  }
+  
