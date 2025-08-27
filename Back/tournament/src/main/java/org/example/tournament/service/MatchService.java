@@ -28,21 +28,16 @@ public class MatchService {
     }
 
     public MatchResponseDto create (MatchReceiveDto matchReceiveDto){
+
+        // Les 6 lignes de codes ci-dessous permettent de rajouter le match dans la liste de match de ces objets (Player1, Player2 & Tourney)
         UserAccount player1 = userAccountRepository.findById(matchReceiveDto.getP1Id()).orElseThrow(NotFoundException::new);
-        //matchReceiveDto.setP1(player1);
-
         UserAccount player2 = userAccountRepository.findById(matchReceiveDto.getP2Id()).orElseThrow(NotFoundException::new);
-        //matchReceiveDto.setP2(player2);
-
         Tourney tourney = tourneyRepository.findById(matchReceiveDto.getTourneyId()).orElseThrow(NotFoundException::new);
-        //matchReceiveDto.setTourney(tourney);
         player1.getMatches().add(matchReceiveDto.dtoToEntity(userAccountRepository, tourneyRepository));
         player2.getMatches().add(matchReceiveDto.dtoToEntity(userAccountRepository, tourneyRepository));
         tourney.getMatches().add(matchReceiveDto.dtoToEntity(userAccountRepository, tourneyRepository));
 
         return matchRepository.save(matchReceiveDto.dtoToEntity(userAccountRepository, tourneyRepository)).entityToDto();
-
-
     }
 
     public MatchResponseDto get(int id){

@@ -18,25 +18,25 @@ public class GameCategoryController {
 
     public GameCategoryController(GameCategoryService gameCategoryService){this.gameCategoryService = gameCategoryService;}
 
-    @GetMapping("/all")
+    @GetMapping("/public/all")
     public ResponseEntity<List<GameCategoryResponseDto>> getAll(){ return ResponseEntity.ok(gameCategoryService.get());}
 
-    @GetMapping("/{id}")
+    @GetMapping("/public/{id}")
     public ResponseEntity<GameCategoryResponseDto> get (@PathVariable int id){
         return ResponseEntity.ok(gameCategoryService.get(id));
     }
 
-    @PostMapping
+    @PostMapping("/public")
     public ResponseEntity<GameCategoryResponseDto> create (@Valid @RequestBody GameCategoryReceiveDto gameCategoryReceiveDto){
         return ResponseEntity.status(HttpStatus.CREATED).body(gameCategoryService.create(gameCategoryReceiveDto));
     }
 
-    @PutMapping("/{id}") //put met une nouvelle donnée
+    @PutMapping("/public/{id}") //put met une nouvelle donnée
     public ResponseEntity<GameCategoryResponseDto> update (@PathVariable int id, @RequestBody GameCategoryReceiveDto gameCategoryReceiveDto){
         return ResponseEntity.ok(gameCategoryService.update(id, gameCategoryReceiveDto));
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/public/{id}")
     public ResponseEntity<String> delete(@PathVariable int id){
         gameCategoryService.delete(id);
         return ResponseEntity.ok(String.format("GameCategory at id : %s is deleted", id));

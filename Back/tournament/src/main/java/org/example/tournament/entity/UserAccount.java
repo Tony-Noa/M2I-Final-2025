@@ -31,8 +31,6 @@ public class UserAccount {
     private String pp; // Profile picture
     private Role role;
 
-    //@OneToMany(mappedBy = "matchId")
-
     @Transient // Le transient permet d'ignorer l'attribut matches, on veut le recuperer pour l'envoyer au front parce qu'il faut tjr une relation quand on crée un nouvel objet
     private List<Match> matches = new ArrayList<Match>();
 
@@ -45,7 +43,6 @@ public class UserAccount {
         joinColumns = @JoinColumn(name = "playerId"),
         inverseJoinColumns = @JoinColumn(name = "tourneyId"))
     private List<Tourney> joinedTourneys;
-    // TODO voir comment alimenter la liste de tournois participé d'un utilisateur mais cela se ferait surtout par la front end ?
 
 
     public UserAccountResponseDto entityToDto(){
@@ -61,15 +58,11 @@ public class UserAccount {
         return UserAccountResponseDto.builder()
                 .id(getUserAccountId())
                 .username(getUsername())
-
                 .joinedTourneys(joinedTourneysDto)
                 .createdTourneys(createdTourneysDto)
-             //   .password(getPassword())
                 .pp(getPp())
                 .email(getEmail())
                 .build();
-
     }
-
 
 }

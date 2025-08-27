@@ -53,6 +53,7 @@ public class UserAccountService {
         UserAccount userAccountFound = userAccountRepository.findById(id).orElseThrow(NotFoundException::new);
         UserAccount userAccountGet = userAccountReceiveDto.dtoToEntity();
         userAccountFound.setUsername(userAccountGet.getUsername());
+        userAccountFound.setEmail(userAccountGet.getEmail());
         userAccountFound.setPassword(userAccountGet.getPassword());
         userAccountFound.setPp(userAccountGet.getPp());
         return userAccountRepository.save(userAccountFound).entityToDto();
@@ -71,7 +72,6 @@ public class UserAccountService {
         tourney.getPlayers().add(playerFound);
 
         return userAccountRepository.save(playerFound).entityToDto();
-
     }
       
     public UserAccountResponseDto getUserByEmail(String email){
