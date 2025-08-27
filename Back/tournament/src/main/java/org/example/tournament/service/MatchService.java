@@ -58,7 +58,7 @@ public class MatchService {
         Match matchGet = matchReceiveDto.dtoToEntity(userAccountRepository, tourneyRepository);
         matchFound.setResultP1(matchGet.getResultP1());
         matchFound.setResultP2(matchGet.getResultP2());
-        //matchFound.setRound(matchGet.getRound());
+        //matchFound.setPosition(matchGet.getPosition());
         // Voir si on veut changer le joueur qui joue
 
         return matchRepository.save(matchFound).entityToDto();

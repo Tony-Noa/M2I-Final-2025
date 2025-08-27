@@ -5,13 +5,9 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.example.tournament.entity.Match;
-import org.example.tournament.entity.Tourney;
-import org.example.tournament.entity.UserAccount;
 import org.example.tournament.exception.NotFoundException;
 import org.example.tournament.repository.TourneyRepository;
 import org.example.tournament.repository.UserAccountRepository;
-
-import java.time.LocalDate;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -24,7 +20,7 @@ public class MatchReceiveDto {
     private int p2Id;
     private int resultP1 = 0;
     private int resultP2 = 0;
-    private int round;
+    private String position;
 
     //private Tourney tourney;
     private int tourneyId;
@@ -36,7 +32,7 @@ public class MatchReceiveDto {
                 .p2(userAccountRepository.findById(p2Id).orElseThrow(NotFoundException::new))
                 .resultP1(getResultP1())
                 .resultP2(getResultP2())
-                .round(getRound())
+                .position(getPosition())
                 .tourney(tourneyRepository.findById(tourneyId).orElseThrow(NotFoundException::new))
                 .build();
     }

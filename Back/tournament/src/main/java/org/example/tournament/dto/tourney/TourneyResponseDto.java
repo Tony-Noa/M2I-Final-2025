@@ -5,7 +5,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.example.tournament.dto.userAccount.UserAccountResponseDto;
-import org.example.tournament.entity.Tformat;
+import org.example.tournament.enums.Tformat;
 import java.time.LocalDate;
 
 @NoArgsConstructor
