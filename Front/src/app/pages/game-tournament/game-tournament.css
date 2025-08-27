@@ -10,9 +10,9 @@
   
   .tournament-logo {
     position: absolute;
-    top: 20px;
+    top: 200px;
     right: 20px;
-    height: 60px;
+    height: 80px;
     z-index: 2;
   }
   
@@ -32,11 +32,21 @@
     text-align: center;
   }
   
+  .tournament-title {
+    font-weight: 500;
+    font-size: 25px;
+    max-width: 360px;
+    margin: 0 auto ;
+    color: #444;
+  }
+
   .tournament-description {
     max-width: 700px;
     margin: 0 auto 1rem;
     color: #444;
   }
+  
+
   
   .join-button {
     padding: 0.6rem 1.5rem;
@@ -66,4 +76,79 @@
     max-width: 250px;
     border-radius: 8px;
   }
+
+  .hero-image-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 3;
+    background-color: rgba(0, 0, 0, 0.5); 
+  }
+
+  .tournament-layout {
+    display: flex;
+    min-height: 100vh;
+  }
+  
+  .sidebar {
+    width: 200px;
+    background-color: white;
+    padding: 1rem;
+    border-right: 1px solid #ddd;
+  }
+  
+  .content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    padding: 2rem;
+  }
+  
+  
+  .sidebar ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .sidebar li {
+    margin-bottom: 1rem;
+  }
+  
+  .sidebar a {
+    text-decoration: none;
+    color: #333;
+    cursor: pointer;
+  }
+  
+  .sidebar a.active {
+    font-weight: bold;
+    color: steelblue;
+  }
+  
+  /* Main content stretches to fill remaining space */
+  .tournament-content {
+    flex: 1;
+    display: flex;
+    justify-content: center; 
+    align-items: flex-start;
+    padding: 2rem;
+  }
+  
+  /* Inner container to limit content width and preserve centering */
+  .tournament-inner {
+    max-width: 800px;
+    width: 100%;
+  }
+
+  .join-button,
+.attendees {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+
   

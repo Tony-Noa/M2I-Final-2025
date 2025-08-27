@@ -1,12 +1,13 @@
-import { Component, Input, OnInit, OnDestroy } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Router, RouterModule } from '@angular/router'; 
 
 @Component({
   selector: 'app-header-hero',
   templateUrl: './header-hero.html',
   styleUrls: ['./header-hero.css'],
   standalone: true,
-  imports: [CommonModule]
+  imports: [CommonModule, RouterModule]
 })
 export class HeaderHeroComponent {
   @Input() title: string = '';
@@ -17,6 +18,13 @@ export class HeaderHeroComponent {
   slideDirection: 'left' | 'right' = 'right';
   intervalId: any;
 
+  constructor(private router: Router) {} 
+
+  createTournament(): void {
+    console.log('Button clicked!');
+    this.router.navigate(['/createtournament']);
+  }
+  
   ngOnInit(): void {
     this.intervalId = setInterval(() => {
       this.nextImage(true);
@@ -30,23 +38,21 @@ export class HeaderHeroComponent {
   nextImage(auto = false): void {
     this.previousIndex = this.currentIndex;
     this.currentIndex = (this.currentIndex + 1) % this.heroImages.length;
-  
-    // Use 'left' for slideDirection for consistency with left arrow animations
+
     this.slideDirection = 'left';
-  
+
     setTimeout(() => {
-      this.previousIndex = -1; // clear previous after animation ends
+      this.previousIndex = -1;
     }, 600);
   }
-  
+
   prevImage(): void {
     this.previousIndex = this.currentIndex;
     this.currentIndex =
       (this.currentIndex - 1 + this.heroImages.length) % this.heroImages.length;
-  
-    // Also use 'left' here for consistency
+
     this.slideDirection = 'left';
-  
+
     setTimeout(() => {
       this.previousIndex = -1;
     }, 600);
@@ -59,11 +65,7 @@ export class HeaderHeroComponent {
     this.currentIndex = index;
 
     setTimeout(() => {
-      this.previousIndex = -1; // Clear previous index after animation
+      this.previousIndex = -1;
     }, 600);
-  }
-
-  createTournament(): void {
-    console.log('Create tournament clicked!');
   }
 }

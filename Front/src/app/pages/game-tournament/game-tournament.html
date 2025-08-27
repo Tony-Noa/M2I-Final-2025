@@ -3,30 +3,60 @@
 <p *ngIf="tournament">Tournament found: {{ tournament.name }}</p>
 <p *ngIf="!tournament">Tournament NOT found</p>
 
+<ng-template #noTournament>
+    <p>Tournament not found.</p>
+  </ng-template>
 
 <ng-container *ngIf="tournament; else noTournament">
     <div class="tournament-banner" [style.backgroundImage]="'url(' + tournament.image + ')'">
       <img class="tournament-logo" [src]="tournament.logo" alt="Logo" />
       <div class="tournament-overlay">
         <h1>{{ tournament.name }}</h1>
-        <p>{{ tournament.date }} - {{ tournament.location }}</p>
+        <p>{{ tournament.date }} - {{ tournament.location }} - {{ tournament.tournamenttype }} - {{ tournament.host }}</p>
       </div>
     </div>
   
-    <div class="tournament-body">
-      <h2>{{ tournament.gameTitle }}</h2>
-      <p class="tournament-description">{{ tournament.description }}</p>
-  
-      <button class="join-button">Join Tournament</button>
-      <p class="attendees">{{ tournament.attendees }}/{{ tournament.maxAttendees }} participants</p>
-  
-      <div class="screenshots">
-        <img *ngFor="let shot of tournament.screenshots" [src]="shot" alt="Tournament screenshot" />
+  <div class="tournament-layout">
+  <aside class="sidebar">
+    <ul>
+      <li><a (click)="selectSection('overview')" [class.active]="activeSection === 'overview'">Overview</a></li>
+      <li><a (click)="selectSection('attendees')" [class.active]="activeSection === 'attendees'">Attendees</a></li>
+      <li><a (click)="selectSection('matches')" [class.active]="activeSection === 'matches'">Matches</a></li>
+      <li><a (click)="selectSection('main')" [class.active]="activeSection === 'main'">Main</a></li>
+    </ul>
+  </aside>
+
+  <section class="tournament-content">
+    <div class="tournament-inner">
+      <div *ngIf="activeSection === 'overview'">
+        <h2>{{ tournament.gameTitle }}</h2>
+        <p class="tournament-title">{{ tournament.title }}</p>
+        <p class="tournament-description">{{ tournament.description }}</p>
+        <button class="join-button">Join Tournament</button>
+        <p class="attendees">{{ tournament.attendees }}/{{ tournament.maxAttendees }} participants</p>
+        <div class="screenshots">
+          <img *ngFor="let shot of tournament.screenshots" [src]="shot" alt="Screenshot" />
+        </div>
+      </div>
+
+      <div *ngIf="activeSection === 'attendees'">
+        <h2>Attendees</h2>
+        <p>(Add your attendees logic here)</p>
+      </div>
+
+      <div *ngIf="activeSection === 'matches'">
+        <h2>Matches</h2>
+        <p>(Add your match list here)</p>
+      </div>
+
+      <div *ngIf="activeSection === 'main'">
+        <h2>Main</h2>
+        <p>(Main tournament content)</p>
       </div>
     </div>
+  </section>
+</div>
+
   </ng-container>
   
-  <ng-template #noTournament>
-    <p>Tournament not found.</p>
-  </ng-template>
   

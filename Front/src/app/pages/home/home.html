@@ -1,37 +1,33 @@
-  <!-- Same with the hero, potentially -->
-
-  <app-header-hero
+<app-header-hero
   [title]="homeHeroTitle"
   [description]="homeHeroDescription"
   [heroImages]="homeHeroImages"
 ></app-header-hero>
 
+<section class="games-section">
+  <div class="section-block">
+    <div class="section-header">
+      <h2 class="section-title">Featured Games</h2>
+      <span class="section-link">Show all games</span>
+    </div>
+    <div class="game-list">
+      <app-gamecard *ngFor="let game of games" [game]="game"></app-gamecard>
+    </div>
+  </div>
+</section>
 
-  <section class="games-section">
-    <div class="section-block">
-      <div class="section-header">
-        <h2 class="section-title">Featured Games</h2>
-        <span class="section-link">Show all games</span>
-      </div>
-      <div class="game-list">
-        <app-gamecard *ngFor="let game of games" [game]="game"></app-gamecard>
-      </div>
+<section class="tournaments-section">
+  <div class="section-block">
+    <div class="section-header">
+      <h3 class="section-title">Featured Tournaments</h3>
+      <span class="section-link">Show all tournaments</span>
     </div>
-  </section>
-  
-  <section class="tournaments-section">
-    <div class="section-block">
-      <div class="section-header">
-        <h3 class="section-title">Featured Tournaments</h3>
-        <span class="section-link">Show all tournaments</span>
-      </div>
-      <div class="game-list">
-        <app-gamecard *ngFor="let game of games" [game]="game"></app-gamecard>
-      </div>
+    <div class="game-list">
+      <app-tournamentcard *ngFor="let tournament of tournaments" [tournament]="tournament"></app-tournamentcard>
     </div>
-  </section>
-  
-  <footer>
-    <p>&copy; 2025 TourneyZone. All rights reserved.</p>
-  </footer>
-  
+  </div>
+</section>
+
+<footer>
+  <p>&copy; 2025 TourneyZone. All rights reserved.</p>
+</footer>
