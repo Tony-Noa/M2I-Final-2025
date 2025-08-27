@@ -1,12 +1,14 @@
 import { Component, HostBinding, OnInit } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
 import { filter } from 'rxjs/operators';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.html',
   styleUrls: ['./navbar.css'],
   standalone: true,
+  imports: [RouterModule],
 })
 export class Navbar implements OnInit {
   transparent = false;

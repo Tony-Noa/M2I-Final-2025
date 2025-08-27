@@ -98,6 +98,11 @@
     max-width: 800px;
     font-size: large;
   }
+
+  .hero-content button {
+    position: relative;
+    z-index: 10;
+  }
   
   .hero-content h2 {
     max-width: 800px;

@@ -8,7 +8,7 @@
   }
   
   
-  /* Game title styling */
+/* Game title styling */
   .game-title {
     font-size: 1.7rem;
     font-weight: 500;
@@ -30,7 +30,7 @@
   }
 
   /* Description below title */
-.game-description {
+  .game-description {
   font-size: 1.2rem;
   color: black;
   max-width: 500px;
