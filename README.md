@@ -99,12 +99,16 @@ Voici une représentation visuelle de l'architecture (structure, entités, relat
    git clone https://github.com/Tony-Noa/M2I-Final-2025.git
    cd M2I-Final-2025
  
-2. **Utilisation des services liés à la base de données**
+2. **Utilisation des services liés à la base de données via des requêtes HTTP**
 Pour le moment il n'a pas été possible de lier directement le back (Java) avec le front (Angular). Mais il est possible d'utiliser des requêtes http  (sur postman par exemple) pour gérer la base de données et ses différentes tables principales (UserAccount, Tourney, Matches & Game Category).
 
 On a besoin d'un utilisateur (UserAccount) et d'une Game Category pour créer un tournoi, et on a besoin d'un tournoi pour créer un match.
 
 Les exemples suivants sont utilisés depuis le port 8090 défini dans l'application.properties du projet java back.
+
+On montrera l'exemple du "get by id", "get all" et "delete" de UserAccount, mais ca marchera de façon similaire avec les 3 autres classes (GameCategory, Tourney, Match), juste que le delete chez UserAccount est /private/ plutot que /public/ juste pour tester.
+En public il y a pas besoin de mettre les tokens.
+
 ```http
    ### Utilisateurs
 
@@ -146,18 +150,14 @@ Les exemples suivants sont utilisés depuis le port 8090 défini dans l'applicat
         "role":0
       }
 
-   
 
-
-   ## Récupération et gestion d'utilisateurs
-
-   # Récupération de tout les utilisateurs
+   ## Récupération de tout les utilisateurs
    GET http://localhost:8090/useraccount/public/all
 
-   # Récupération de l'utilisateur id2 (= testB)
+   ## Récupération de l'utilisateur id2 (= testB)
    GET http://localhost:8090/useraccount/public/2
 
-   # Mise à jour de l'utilisateur id2
+   ## Mise à jour de l'utilisateur id2
    PUT http://localhost:8090/useraccount/public/2
    Content-Type: application/json
 
@@ -169,7 +169,8 @@ Les exemples suivants sont utilisés depuis le port 8090 défini dans l'applicat
         "pp": "pictureb.jpg"
       }
 
-   # Suppression utilisateur id4 : on crée d'abord un login puisque cette méthode est en private (peu importe, pour le moment n'importe quel utilisateur enregistré peut supprimer un autre utilisateur, on implémentera plus tard la capacité à l'admin du site à supprimer n'importe quel utilisateur et un utilisateur de se supprimer lui même).
+   ## Suppression utilisateur id4
+   # On crée d'abord un login puisque cette méthode est en private (peu importe, pour le moment n'importe quel utilisateur enregistré peut supprimer un autre utilisateur, on implémentera plus tard la capacité à l'admin du site à supprimer n'importe quel utilisateur et un utilisateur de se supprimer lui même).
 
    POST http://localhost:8090/auth/public/login
    Content-Type: application/json
@@ -178,14 +179,96 @@ Les exemples suivants sont utilisés depuis le port 8090 défini dans l'applicat
     "password": "ptesta"
    }
 
-   On reçoit un token en résultat
+      #On reçoit un token en résultat
+   -> [token]
 
 
-
-   ### Tournois
    Authorization -> Auth Type = Bearer Token -> Token : [token]
    DELETE http://localhost:8090/useraccount/private/4
 
+      # Ainsi, l'utilisateur d'ID4 est supprimé
 
 
+   ### Catégorie
+
+   ## Création d'une catégorie
+   POST http://localhost:8090/gamecategory/public
+   Content-Type: application/json
+   {
+	"name": "Super Smash Bros Ultimate",
+    "icon": "iconssbu.jpg,
+    "logo": "logossbu.jpg"
+   }
+
+
+   ### Tournois
+
+   ## Création de tournoi 
+   POST http://localhost:8090/tourney/public
+   Content-Type: application/json
+   {
+	 "name": "September Smash Bonanza",
+    "format": "SINGLE_ELIMINATION",
+    "creationDate": "01-09-2025",
+    "startDate": "07-09-2025",
+    "signStartDate": "02-09-2025",
+    "signEndDate": "06-09-2025",
+    "gameCategoryId": 1,
+    "founderId": 3
+   }
+      # ici c'est l'utilisateur id3 qui a crée le tournoi, en utilisant la catégorie id3 (Super Smash Bros Ultimate)
+
+   ## Mis à jour du tournoi
+   PUT http://localhost:8090/tourney/public/1
+   Content-Type: application/json
+   {
+    "name": "September Smash Bonanza REVAMPED",
+    "format": "SINGLE_ELIMINATION",
+    "creationDate": "01-09-2025",
+    "startDate": "07-09-2025",
+    "signStartDate": "02-09-2025",
+    "signEndDate": "05-09-2025",
+    "gameCategoryId": 1,
+    "founderId": 3
+   }
+      # Ici on a changé que le nom et le sign end date. Ce qui sera modifié sont juste les dates (sauf creation), le nom et le format. Mais à cause de la nature du TourneyReceiveDto, il faut quand même mettre la creation date, le founder id et le game category id.
+
+   ## Participation à un tournoi (la méthode est juste pour tester, normalement ca devrait se faire depuis le front)
+
+   PUT http://localhost:8090/useraccount/public/1/1
+      # Ici le premier "1" représente l'id du joueur et le 2eme représente l'id du tournoi.
+
+   PUT http://localhost:8090/useraccount/public/2/1
+      # Le "2" représente l'id du joueur et le "1" représente l'id du tournoi
+
+      # Ainsi, l'utilisateur 1 et 2 seront dans la liste des joueurs du tournoi 1, et vice-versa
+
+
+
+   ### Match
+
+   ## Création d'un match
+   POST http://localhost:8090/match/public
+   Content-Type: application/json
+   {
+	 "p1Id": 1,
+    "p2Id": 2,
+    "position": "1-1",
+    "tourneyId": 1
+   }
+
+
+   ## Mis à jour d'un match
+   PUT http://localhost:8090/match/public/1
+   Content-Type: application/json
+
+   {
+        "p1Id": 1,
+        "p2Id": 2,
+        "resultP1": 3,
+        "resultP2": 2,
+        "position": "1-1",
+        "tourneyId": 1
+   }
+   # Ici, le joueur id1 a gagné 3 match à 2 sur le joueur id2 
 ```
