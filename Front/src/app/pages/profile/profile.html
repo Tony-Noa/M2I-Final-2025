@@ -26,19 +26,50 @@
         <div class="profile-buttons">
           <button>Edit Profile</button>
         </div>
-  <!-- Tournaments created -->
-<div class="profile-content">
-    <div class="profile-section-title">Tournaments created</div>
-    <div class="tournament-cards">
-      <app-tournamentcard
-        *ngFor="let tournament of user.createdTournaments"
-        [tournament]="tournament"
-      ></app-tournamentcard>
-    </div>
-  </div>
   
+      </div>
   
-    </div>
+      <!-- Tournaments created -->
+      <div class="profile-content">
+        <div class="profile-section-title">Tournaments created</div>
+        <div class="tournament-cards">
+          <app-tournamentcard
+            *ngFor="let tournament of user.createdTournaments"
+            [tournament]="tournament"
+          ></app-tournamentcard>
+        </div>
+      </div>
+      
+      <hr class="section-divider" />
+
+
+      <div class="profile-content">
+        <div class="profile-section-title">Last tournaments results</div>
+        <ul class="last-results">
+          <li>1/10 <span class="icon">⚫</span> My First Tournament</li>
+          <li>1/10 <span class="icon">⚫</span> My First Tournament</li>
+          <li>1/10 <span class="icon">⚫</span> My First Tournament</li>
+        </ul>
+  
+        <hr class="section-divider" />
+
+
+        <div class="profile-section-title">Stats</div>
+        <div class="stats">
+          <div class="stat-item">
+            <div class="number">0</div>
+            <div class="label">Victory</div>
+          </div>
+          <div class="stat-item">
+            <div class="number">0</div>
+            <div class="label">Defeat</div>
+          </div>
+          <div class="stat-item">
+            <div class="number">0.00%</div>
+            <div class="label">Winrate</div>
+          </div>
+        </div>
+      </div>
   
     </div>
   </div>
