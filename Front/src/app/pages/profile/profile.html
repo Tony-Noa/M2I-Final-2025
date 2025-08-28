@@ -1,0 +1,45 @@
+<div class="profile-wrapper">
+    <div class="profile-container">
+  
+      <!-- Cover banner -->
+      <div class="profile-banner" 
+           [style.backgroundImage]="'url(https://d1fw31bt5svviq.cloudfront.net/img/dragon_ball_cartoons_web_header.jpg.jpg)'">
+      </div>
+  
+      <!-- Profile Info -->
+      <div class="profile-info">
+  
+        <!-- Left section: avatar + details -->
+        <div class="profile-main">
+          <img class="profile-avatar" 
+               src="https://en.dragon-ball-official.com/dragonball/jp/news/2022/09/%E6%82%9F%E7%A9%BA_%E3%82%AD%E3%83%A9_%E8%99%B9.png?_=1756005180" 
+               alt="Profile Icon" />
+  
+          <div class="profile-details">
+            <div class="profile-username">{{ user.username }}</div>
+            <div class="profile-location">{{ user.location }}</div>
+            <div class="profile-join-date">Joined {{ user.joinDate | date:'MMMM yyyy' }}</div>
+          </div>
+        </div>
+  
+        <!-- Right section: Edit button -->
+        <div class="profile-buttons">
+          <button>Edit Profile</button>
+        </div>
+  <!-- Tournaments created -->
+<div class="profile-content">
+    <div class="profile-section-title">Tournaments created</div>
+    <div class="tournament-cards">
+      <app-tournamentcard
+        *ngFor="let tournament of user.createdTournaments"
+        [tournament]="tournament"
+      ></app-tournamentcard>
+    </div>
+  </div>
+  
+  
+    </div>
+  
+    </div>
+  </div>
+  
