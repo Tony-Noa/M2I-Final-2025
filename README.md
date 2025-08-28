@@ -1,39 +1,70 @@
-# M2I Final 2025 – Projet de Fin d'Études Full-Stack Java
+# M2I-Final-2025
 
-> **Dernier projet M2i** réalisé dans le cadre de la formation **Développeur Full-Stack Java** en 2025, mené par **Tony Noa** et Salim.
+**Dernier projet M2i – Développeur Full-Stack Java 2025**  
+Avec Salim et Tony Noa
 
 ---
 
 ##  Table des matières
 
-- [À propos](#à-propos)  
-- [Technologies et architecture](#technologies-et-architecture)  
-- [Diagramme UML](#diagramme-uml)  
-- [API Endpoints](#api-endpoints)  
-- [Installation & utilisation](#installation---utilisation)  
+- [À propos / Description](#à-propos-description)  
+- [Captures d’écran / Aperçu](#captures-décran-aperçu)  
+- [Fonctionnalités principales](#fonctionnalités-principales)  
+- [Technologies utilisées](#technologies-utilisées)  
+- [Architecture & Design](#architecture-design)  
+- [Endpoints API](#endpoints-api)  
+- [Installation & Lancement](#installation-lançement)  
 - [Contributeurs](#contributeurs)  
-- [Licences & crédits](#licences---crédits)
+- [Licence](#licence)
 
 ---
 
-## À propos
+##  À propos / Description
 
-Ce projet représente l’aboutissement de la formation de **Développeur Full-Stack Java** proposée par M2i. Il englobe :
-
-- Conception et développement front-end (React) et back-end (Spring Boot – Java)  
-- Une API REST complète avec CRUD, authentification, etc.  
-- Un diagramme UML clair modélisant l'architecture du système (fichier `.drawio` inclus)
+Ce projet est le dernier travail du parcours **M2i Développeur Full-Stack Java (2025)**, créé par **Tony Noa** avec **Salim**. Il s'agit d'une application web complète (backend Java + frontend moderne) pour [décrire brièvement la fonction principale, ex. gestion de tâches, carnet d’adresse, etc.].
 
 ---
 
-## Technologies et architecture
+##  Captures d’écran / Aperçu
 
-| Côté         | Technologies                                        |
-|--------------|----------------------------------------------------|
-| Front-end    | React, TypeScript, HTML5, CSS (ou SCSS), Axios     |
-| Back-end     | Spring Boot (Java), Spring Security (authentification JWT) |
-| Base de données | PostgreSQL / MySQL / H2 (selon le choix projet)   |
-| Outils & DevOps | Maven / Gradle, Docker (Dockerfile / docker-compose), CI/CD (GitHub Actions) |
+Voici un aperçu visuel de l'application :  
+
+![Page d'accueil de l'application](https://via.placeholder.com/600x300?text=Page+d%27accueil)  
+![Formulaire de création](https://via.placeholder.com/600x300?text=Formulaire+de+création)
+
+*(Remplacez les URLs par de vraies captures hébergées ou sur le dépôt.)*
+
+---
+
+##  Fonctionnalités principales
+
+- Authentification des utilisateurs (login / inscription)
+- CRUD sur les entités principales (ex. tâches, utilisateurs, produits…)
+- Interface responsive (mobile et desktop)
+- Validation côté client et serveur
+- Gestion des erreurs et retours clairs à l’utilisateur
+
+---
+
+##  Technologies utilisées
+
+| Partie        | Technologies / Frameworks                |
+|---------------|------------------------------------------|
+| Backend       | Java, Spring Boot, JPA/Hibernate         |
+| Frontend      | TypeScript, React (ou Angular/Vue), CSS |
+| Base de données | MySQL ou PostgreSQL (à renseigner)     |
+| Tests         | JUnit, Mockito (backend), Jest (frontend)|
+| CI / Déploiement | GitHub Actions, Docker (optionnel)    |
+
+---
+
+##  Architecture & Design
+
+- Utilisation de **principes RESTful** pour l'API
+- Séparation claire entre la **couche service** et la **couche contrôleur**
+- Modèle **MVC côté front** (ex. composants React, services, stores)
+- Base de données relationnelle avec **entités bien modélisées**
+- (Optionnel) Diagrammes UML ou schéma de base de données en annexes (ex. `.drawio`)
 
 ---
 
@@ -45,25 +76,26 @@ Voici une représentation visuelle de l'architecture (structure, entités, relat
 
 ---
 
-## API Endpoints
+##  Endpoints API
 
-| Méthode | URL                  | Description                                      |
-|---------|----------------------|--------------------------------------------------|
-| GET     | `/api/items`         | Récupère la liste de tous les items              |
-| GET     | `/api/items/{id}`    | Récupère un item spécifique par son ID           |
-| POST    | `/api/items`         | Crée un nouvel item                              |
-| PUT     | `/api/items/{id}`    | Met à jour un item existant                      |
-| DELETE  | `/api/items/{id}`    | Supprime un item                                 |
-| POST    | `/api/auth/login`    | Authentifie un utilisateur, retourne un token JWT |
-| POST    | `/api/auth/register` | Enregistre un nouvel utilisateur                 |
+| Méthode | Endpoint                   | Description                          |
+|:-------:|----------------------------|--------------------------------------|
+| `POST`  | `/api/auth/register`       | Inscription d’un nouvel utilisateur  |
+| `POST`  | `/api/auth/login`          | Connexion (authentification)         |
+| `GET`   | `/api/items`               | Récupérer la liste des éléments      |
+| `GET`   | `/api/items/{id}`          | Récupérer un élément par son ID      |
+| `POST`  | `/api/items`               | Créer un nouvel élément              |
+| `PUT`   | `/api/items/{id}`          | Mettre à jour un élément existant    |
+| `DELETE`| `/api/items/{id}`          | Supprimer un élément                  |
 
-*(Adaptez et complétez en fonction des routes réelles de votre projet)*
+*(Adapté selon votre domaine métier : items, tasks, users, etc.)*
 
 ---
 
-## Installation & utilisation
+##  Installation & Lancement
 
-1. Clonez le dépôt :
+1. **Cloner le dépôt**  
    ```bash
    git clone https://github.com/Tony-Noa/M2I-Final-2025.git
    cd M2I-Final-2025
+ 
