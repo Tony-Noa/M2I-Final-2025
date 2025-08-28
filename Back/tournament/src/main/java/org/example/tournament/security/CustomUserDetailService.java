@@ -29,7 +29,6 @@ public class CustomUserDetailService implements UserDetailsService {
         if (userOptional.isPresent()){
             UserAccount user = userOptional.get();
             Set<GrantedAuthority> authorities = new HashSet<>();
-
             if (user.getRole().toString().equals("ADMIN")) authorities.add(new SimpleGrantedAuthority("ROLE_ADMIN"));
             else authorities.add(new SimpleGrantedAuthority("ROLE_USER"));
 

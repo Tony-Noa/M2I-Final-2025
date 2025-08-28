@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("tourney")
+@RequestMapping("api/private/tourney")
 @CrossOrigin(origins = "*", methods = {RequestMethod.GET, RequestMethod.POST})
 public class TourneyController {
 
@@ -28,8 +28,9 @@ public class TourneyController {
         return ResponseEntity.ok(tourneyService.get(id));
     }
 
-    @PostMapping("/public")
-    public ResponseEntity<TourneyResponseDto> create (@Valid @RequestBody TourneyReceiveDto tourneyReceiveDto){
+
+    @PostMapping()
+    public ResponseEntity<TourneyResponseDto> create ( @RequestBody TourneyReceiveDto tourneyReceiveDto){
         return ResponseEntity.status(HttpStatus.CREATED).body(tourneyService.create(tourneyReceiveDto));
     }
 
