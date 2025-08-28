@@ -1,10 +1,9 @@
-
 <div class="auth-container">
-    <h2>Sign Up</h2>
-    <form>
-      <input type="email" placeholder="Email" />
-      <input type="username" placeholder="Username" />
-      <input type="password" placeholder="Password" />
-      <button type="submit">Sign up</button>
-    </form>
-  </div>
+  <h2>Sign Up</h2>
+  <form [formGroup]="form">
+    <input type="email" placeholder="Email" name="email" formControlName="email" />
+    <input type="username" name="username" placeholder="Username" formControlName="username" />
+    <input type="password" name="password" placeholder="Password" formControlName="password" />
+    <button (click)="onSubmit()" type="button">Sign up</button>
+  </form>
+</div>

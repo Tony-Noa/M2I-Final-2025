@@ -1,0 +1,62 @@
+<!-- Overlay -->
+@if(visible){
+<div class="fixed inset-0 flex items-center justify-center bg-black/50 z-50 transition-opacity duration-300">
+
+    <!-- Conteneur -->
+    <div class="bg-white rounded-2xl shadow-xl p-6 w-96 relative 
+         transform transition-all duration-300 
+         scale-95 animate-[fadeInScale_0.3s_ease-out_forwards]">
+        <!-- Bouton de fermeture -->
+        <button class="absolute top-3 right-3 text-gray-500 hover:text-gray-800" (click)="close()">
+            ✕
+        </button>
+
+        <!-- Titre -->
+        <h2 class="text-lg font-bold text-center mb-4">
+            Match {{ match.position }}
+        </h2>
+
+        <!-- Tableau Opposants / Scores -->
+        <div class="grid grid-cols-[4fr_1fr] 
+                   text-[13px] w-full min-w-fit min-h-fit 
+                   bg-white border-2 border-gray-300 rounded-lg overflow-hidden shadow">
+            <!-- Opposant A -->
+            <div class="flex items-center px-2 border-t-0 border-l-0 border-gray-300" [class]="{
+                'font-bold text-green-600': match.isTerminated && match.winner === match.opponentA
+            }">
+                {{ match.opponentA }}
+            </div>
+
+            <!-- Score A -->
+            <div class="flex items-center justify-center font-semibold border-l border-gray-300">
+                <input id="scoreA" type="number" [(ngModel)]="match.scoreA" [value]="match.scoreA" name="scoreA">
+            </div>
+
+            <!-- Opposant B -->
+            <div class="flex items-center px-2 border-t border-l-0 border-gray-300" [class]="{
+                'font-bold text-green-600': match.isTerminated && match.winner === match.opponentB
+              }">
+                {{ match.opponentB }}
+            </div>
+
+            <!-- Score B -->
+            <div class="flex items-center justify-center font-semibold border-t border-l border-gray-300">
+                <input id="scoreB" type="number" [value]="match.scoreB" [(ngModel)]="match.scoreB">
+            </div>
+        </div>
+            <button type="button" (click)="register()"> End Match </button>
+        
+
+
+
+        <!-- Vainqueur affiché quand le match est terminé -->
+        @if(match.isTerminated){
+        <div class="mt-4 text-center">
+            <span class="text-sm text-gray-600">Vainqueur :</span>
+            <span class="ml-2 font-bold text-green-600">{{ match.winner }}</span>
+        </div>
+        }
+
+    </div>
+</div>
+}

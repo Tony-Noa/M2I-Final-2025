@@ -1,0 +1,31 @@
+<div (click)="openPopup()" id="container" role="table" aria-label="Tableau 2 par 2 (sans balises table)" class="grid grid-cols-[3fr_1fr] 
+         text-[13px] w-[150px] h-[26.8px] min-w-fit min-h-fit 
+         bg-white border-2 border-[var(--bordure)] rounded-[var(--rayon)] 
+         shadow-[0_10px_30px_rgba(0,0,0,0.06)] overflow-hidden">
+    <!-- Opposant A -->
+    <div role="rowheader" tabindex="0"
+        class="flex items-center border-t-0 border-l-0 border-[var(--bordure)] first:border-t-0 odd:border-l-0">
+        <span [innerText]="match.opponentA"></span>
+    </div>
+
+    <!-- Score A -->
+    <div role="columnheader" tabindex="0"
+        class="flex items-center justify-center font-semibold border-t-0 border-l border-[var(--bordure)]">
+        <span  [innerText]="match.scoreA"></span>
+    </div>
+
+    <!-- Opposant B -->
+    <div role="cell" tabindex="0" class="flex items-center border-t border-l-0 border-[var(--bordure)]">
+        <span  [innerText]="match.opponentB"></span>
+    </div>
+
+    <!-- Score B -->
+    <div role="cell" tabindex="0"
+        class="flex items-center justify-center font-semibold border-t border-l border-[var(--bordure)]">
+        <span [innerText]="match.scoreB"></span>
+    </div>
+
+    
+</div>
+
+<app-match-popup [visible]="showPopup" [match]="match" (closed)="showPopup = false; changeBracket($event)" />

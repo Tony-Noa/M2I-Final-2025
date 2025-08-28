@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { Gamecard } from '../../components/gamecard/gamecard';
 import { HeaderHeroComponent } from "../../components/header-hero/header-hero";
 import { Tournamentcard } from '../../components/tournamentcard/tournamentcard';
-import { GameDataService } from '../../services/game-data.service';
+import { GameDataService } from '../../utils/services/game-data.service';
 
 @Component({
   selector: 'app-home',
@@ -25,7 +25,7 @@ export class HomeComponent {
   games: any[] = [];
   tournaments: any[] = [];
 
-  constructor(private gameData: GameDataService) {}
+  constructor(private gameData: GameDataService) { }
 
   ngOnInit(): void {
     this.games = this.gameData.getAllGames();
