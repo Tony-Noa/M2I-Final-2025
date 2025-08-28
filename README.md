@@ -43,7 +43,7 @@ Voici une représentation visuelle de l'architecture (structure, entités, relat
 
 ![Diagramme UML](URL_DE_L_IMAGE_UML_DERIVED_VIA_IMAGE_QUERY)
 
-*(Remplacez `URL_DE_L_IMAGE...` par l'image hébergée du fichier `.drawio` converti en PNG ou SVG.)*
+
 
 ---
 
