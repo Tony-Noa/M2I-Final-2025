@@ -120,7 +120,7 @@ En public il y a pas besoin de mettre les tokens.
         "email": "testa@hotmail.com",
         "password": "ptesta",
         "role":1
-      }
+      } # il semble pas possible de mettre quelqu'un en role admin
 
    POST http//localhost:8090/auth/public/register
    Content-Type: application/json
@@ -175,15 +175,19 @@ En public il y a pas besoin de mettre les tokens.
    POST http://localhost:8090/auth/public/login
    Content-Type: application/json
    {
-    "email": "testa@hotmail.com",
-    "password": "ptesta"
+    "email": "testc@hotmail.com",
+    "password": "ptestC"
    }
 
-      #On reçoit un token en résultat
-   -> [token]
+      # On reçoit un token en résultat
+   -> {
+    "id": 3,
+    "token": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ0ZXN0Q0Bob3RtYWlsLmNvbSIsInJvbGUiOiJST0xFX1VTRVIiLCJpYXQiOjE3NTYzODk5MzQsImV4cCI6MTc4NzkyNTkzNH0.FF-D-t_p-OG27eG5m3Jmz6iMmJ-frAg-uS6HqZWHwuyo32eVNpU7js2_KHKQr8W_9mEvMfHvorknlNN8UJd2IA"
+      }
 
 
-   Authorization -> Auth Type = Bearer Token -> Token : [token]
+   Authorization -> Auth Type = Bearer Token -> Token : eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ0ZXN0Q0Bob3RtYWlsLmNvbSIsInJvbGUiOiJST0xFX1VTRVIiLCJpYXQiOjE3NTYzODk5MzQsImV4cCI6MTc4NzkyNTkzNH0.FF-D-t_p-OG27eG5m3Jmz6iMmJ-frAg-uS6HqZWHwuyo32eVNpU7js2_KHKQr8W_9mEvMfHvorknlNN8UJd2IA
+   
    DELETE http://localhost:8090/useraccount/private/4
 
       # Ainsi, l'utilisateur d'ID4 est supprimé
@@ -196,10 +200,26 @@ En public il y a pas besoin de mettre les tokens.
    Content-Type: application/json
    {
 	"name": "Super Smash Bros Ultimate",
-    "icon": "iconssbu.jpg,
+    "icon": "iconssbu.jpg",
     "logo": "logossbu.jpg"
    }
 
+   POST http://localhost:8090/gamecategory/public
+   Content-Type: application/json
+   {
+	"name": "Street Fighter 5",
+    "icon": "iconsf5.jpg",
+    "logo": "logosf5.jpg"
+   }
+
+   ## Modification d'une catégorie
+   PUT http://localhost:8090/gamecategory/public/2
+   Content-Type: application/json
+   {
+	 "name": "Street Fighter 6",
+    "icon": "iconsf6.jpg",
+    "logo": "logosf6.jpg"
+   }
 
    ### Tournois
 
@@ -272,3 +292,13 @@ En public il y a pas besoin de mettre les tokens.
    }
    # Ici, le joueur id1 a gagné 3 match à 2 sur le joueur id2 
 ```
+
+
+
+### PROBLEMES A REGLER
+
+
+- Faire le gestionnaire de bracket plutot dans le back
+- Diagramme UML : faire un diagramme de classe et un diagramme de BDD (ce que j'ai fait actuellement mixe les deux et c'est pas ouf)
+- Back : Quand le response JSON sur postman renvoie un probleme car on a mal mis un truc, on a un "401 unauthorized" alors que c'est censé nous envoyer un autre type d'erreur. Ca nous fait une erreur d'authentification alors que y'a pas d'authentification censé être lié à ça.
+- Faire la connection entre le front et le back
