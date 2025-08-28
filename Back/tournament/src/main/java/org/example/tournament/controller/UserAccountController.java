@@ -19,34 +19,37 @@ public class UserAccountController {
 
     public UserAccountController(UserAccountService userAccountService){this.userAccountService = userAccountService;}
 
-    @GetMapping("/all")
+    @GetMapping("/public/all")
     public ResponseEntity<List<UserAccountResponseDto>> getAll(){ return ResponseEntity.ok(userAccountService.get());}
 
-    @GetMapping("/{id}")
+    @GetMapping("/public/{id}")
     public ResponseEntity<UserAccountResponseDto> get (@PathVariable int id){
         return ResponseEntity.ok(userAccountService.get(id));
     }
-
-    @PostMapping
+    /*
+    @PostMapping("/public")
     public ResponseEntity<UserAccountResponseDto> create (@Valid @RequestBody UserAccountReceiveDto userAccountReceiveDto){
         return ResponseEntity.status(HttpStatus.CREATED).body(userAccountService.create(userAccountReceiveDto));
     }
+    */
 
-    @PutMapping("/{id}") //put met une nouvelle donnée
+
+    @PutMapping("/public/{id}") //put met une nouvelle donnée
     public ResponseEntity<UserAccountResponseDto> update (@PathVariable int id, @RequestBody UserAccountReceiveDto userAccountReceiveDto){
         return ResponseEntity.ok(userAccountService.update(id, userAccountReceiveDto));
     }
 
-    @PutMapping("/{userId}/{tourneyId}") //put met une nouvelle donnée
+    @PutMapping("/public/{userId}/{tourneyId}") //put met une nouvelle donnée
     public ResponseEntity<UserAccountResponseDto> register (@PathVariable Integer userId, @PathVariable Integer tourneyId){
         return ResponseEntity.ok(userAccountService.register(userId, tourneyId));
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/private/{id}")
     public ResponseEntity<String> delete(@PathVariable int id){
         userAccountService.delete(id);
         return ResponseEntity.ok(String.format("UserAccount at id : %s is deleted", id));
 
-    }
+    } // Ici vu qu'on est en private, il faut faire un login et recuperer un token qu'on mettra sur Postman (par exemple)
+      // dans la rubrique "authorization" => auth type bearer token => Mettre le token (sans guillemet ou "token":" ", juste direct)
 
 }

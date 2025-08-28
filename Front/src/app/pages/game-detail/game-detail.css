@@ -1,0 +1,65 @@
+/* Container below hero */
+.game-info {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px 16px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #222;
+  }
+  
+  
+/* Game title styling */
+  .game-title {
+    font-size: 1.7rem;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+    color: black;
+  }
+  
+  .game-header-overlay {
+    position: absolute;
+    top: 370px; 
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    z-index: 3;
+    background-color: rgb(255, 255, 255); 
+    padding: 0.2rem 3rem ;
+    filter: drop-shadow(1px 1px 2px #3f3f3f);
+
+  }
+
+  /* Description below title */
+  .game-description {
+  font-size: 1.2rem;
+  color: black;
+  max-width: 500px;
+  margin: 0 auto;
+  line-height: 1.5;
+}
+  
+  /* Tournaments section */
+  .tournaments-heading {
+    padding-top: 1rem;
+    font-size: 2rem;
+    font-weight: 600;
+    margin-bottom: 16px;
+    border-bottom: 2px solid #f3f3f3;
+    padding-bottom: 10px;
+  }
+  
+  /* Tournament cards grid */
+  .tournament-cards-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+    gap: 10px;
+  }
+  
+  /* Fallback for no game */
+  p {
+    text-align: center;
+    font-size: 1.2rem;
+    margin-top: 60px;
+    color: #888;
+  }
+  

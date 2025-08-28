@@ -1,0 +1,21 @@
+<section class="hero-carousel-game">
+    <div class="hero-image-overlay"></div>
+  
+    <div class="hero-images">
+      <img
+        *ngFor="let image of heroImages; index as i"
+        [src]="image"
+        [alt]="'Hero image ' + (i + 1)"
+        [class.active]="i === currentIndex"
+        [class.previous]="i === previousIndex"
+      />
+    </div>
+  
+    <div class="hero-overlay-game">
+      <div class="hero-content-game">
+        <img [src]="logo" alt="{{ title }} Logo" class="game-logo" />
+        <ng-content></ng-content>
+      </div>
+    </div>
+  </section>
+  

@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.io.Console;
 
-@RequestMapping("/api/public/auth")
+@RequestMapping("/auth/public")
 @RestController
 @CrossOrigin(origins = "*", methods = {RequestMethod.GET, RequestMethod.POST})
 public class UserAuthController {

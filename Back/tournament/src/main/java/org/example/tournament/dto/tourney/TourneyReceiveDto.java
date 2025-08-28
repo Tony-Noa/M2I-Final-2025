@@ -25,7 +25,7 @@ public class TourneyReceiveDto {
     private String name;
 
     private String format;
-
+  
     @Pattern(regexp = "[0-9]{4}[-|\\/]{1}[0-9]{2}[-|\\/]{1}[0-9]{2}" , message = "Date should be as yyyy-MM-dd format!")
     private String creationDate;
 
@@ -39,12 +39,9 @@ public class TourneyReceiveDto {
     private String signEndDate;
 
     //@NotEmpty(message = "Please input a valid founder")
-    //private int founderId;
     private int founderId;
-    //private UserAccount Founder;
 
     private int gameCategoryId;
-    //private GameCategory gameCategory;
 
     private List<UserAccount> players;
 
@@ -52,7 +49,7 @@ public class TourneyReceiveDto {
 
     public Tourney dtoToEntity(GameCategoryRepository gameCategoryRepository, UserAccountRepository userAccountRepository) {
 
-        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
 
         return Tourney.builder()
                 .name(getName())
@@ -63,11 +60,6 @@ public class TourneyReceiveDto {
                 .signEndDate(LocalDate.parse(getSignEndDate(), dateTimeFormatter))
                 .gameCategory(gameCategoryRepository.findById(gameCategoryId).orElseThrow(NotFoundException::new))
                 .founder(userAccountRepository.findById(founderId).orElseThrow(NotFoundException::new))
-                //.players(getPlayers())
-                //.matches(getMatches())
                 .build();
     }
 }
-
-// Semble qu il y a pas besoin de mettre dans le receive ici
-

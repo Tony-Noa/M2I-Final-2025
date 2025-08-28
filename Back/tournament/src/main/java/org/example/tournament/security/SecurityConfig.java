@@ -29,9 +29,9 @@ public class SecurityConfig {
                 .exceptionHandling(e-> e.authenticationEntryPoint(entryPoint))
                 .sessionManagement(s -> s.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(r -> r
-                        .requestMatchers("/api/**").permitAll()
-//                        .requestMatchers("/api/private/**").hasAnyRole("USER", "ADMIN")
-//                        .requestMatchers("/api/admin/**").hasRole("ADMIN")
+                        .requestMatchers("**/public/**").permitAll() // Ici ca permet de check la sécurité sur chaque appel de lien du controller. Pour utiliser ** Deux fois j'ai du rajouter "spring.mvc.pathmatch.matching-strategy=ANT_PATH_MATCHER" sur le application.properties
+                        .requestMatchers("**/private/**").hasAnyRole("USER", "ADMIN")
+                        .requestMatchers("**/admin/**").hasRole("ADMIN")
                         .anyRequest().authenticated()
                 )
                 .httpBasic(c-> {});

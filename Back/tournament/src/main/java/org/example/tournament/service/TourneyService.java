@@ -32,6 +32,7 @@ public class TourneyService {
         GameCategory gameCategory = gameCategoryRepository.findById(tourneyReceiveDto.getGameCategoryId()).orElseThrow(NotFoundException::new);
         founder.getCreatedTourneys().add(tourneyReceiveDto.dtoToEntity(gameCategoryRepository, userAccountRepository));
         gameCategory.getTourneys().add(tourneyReceiveDto.dtoToEntity(gameCategoryRepository, userAccountRepository));
+
         return tourneyRepository.save(tourneyReceiveDto.dtoToEntity(gameCategoryRepository, userAccountRepository)).entityToDto();
     }
 
@@ -48,10 +49,10 @@ public class TourneyService {
         Tourney tourneyGet = tourneyReceiveDto.dtoToEntity(gameCategoryRepository, userAccountRepository);
         tourneyFound.setName(tourneyGet.getName());
         tourneyFound.setFormat(tourneyGet.getFormat());
-        //tourneyFound.setCreationDate(tourneyGet.getCreationDate());
         tourneyFound.setStartDate(tourneyGet.getStartDate());
         tourneyFound.setSignStartDate(tourneyGet.getSignStartDate());
-        tourneyFound.setSignEndDate(tourneyGet.getSignEndDate());
+        tourneyFound.setSignEndDate(tourneyGet.getSignEndDate()); // Attention, il faudra aussi mettre dans la requete (Postman par exemple)
+                    // le reste des attributs du TourneyReceiveDto sinon ca renverra une erreur, même s'ils seront pas pris en compte pour la modif
 
         return tourneyRepository.save(tourneyFound).entityToDto();
     }

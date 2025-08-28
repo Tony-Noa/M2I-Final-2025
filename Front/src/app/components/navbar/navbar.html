@@ -1,35 +1,41 @@
-<nav class="h-14 text-white flex items-center justify-between px-6">
-    <!-- Left Section -->
-    <div class="flex items-center gap-6">
-      <h1 class="text-xl font-bold">GameZone</h1>
-      <ul class="flex gap-4 list-none text-sm">
-        <li><a href="#" class="hover:text-gray-300">Home</a></li>
-        <li><a href="#" class="hover:text-gray-300">Games</a></li>
-        <li><a href="#" class="hover:text-gray-300">Tournaments</a></li>
-        <li><a href="#" class="hover:text-gray-300">About</a></li>
-      </ul>
-    </div>
-  
-    <!-- Center: Search -->
-    <div class="relative mx-8 hidden md:block w-[350px]">
-      <span class="absolute inset-y-0 left-3 flex items-center text-gray-400">🔍</span>
-      <input
-        type="text"
-        placeholder="Search games..."
-        class="w-full pl-10 pr-4 py-2 rounded-full border border-gray-700 bg-gray-800 text-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-      />
-    </div>
-  
-    <!-- Right Section -->
-    <div class="flex items-center gap-3">
-      <a routerLink="/sign-up"
-         class="border border-green-500 text-green-500 px-4 py-1 rounded hover:bg-green-500 hover:text-white transition">
-        Sign up
-      </a>
-      <a routerLink="/log-in"
-         class="bg-blue-600 text-white px-4 py-1 rounded hover:bg-blue-700 transition">
-        Log in
-      </a>
-    </div>
-  </nav>
-  
+<nav
+  class="h-14 text-white flex items-center justify-between px-6 fixed top-0 left-0 w-full transition-colors duration-300"
+  [class.bg-black]="!transparent"
+  [class.bg-black-semi]="transparent"
+  style="z-index: 50;"
+>
+
+  <!-- Left Section -->
+  <div class="flex items-center gap-6 flex-shrink-0">
+    <h1 class="text-xl font-bold">GameZone</h1>
+    <ul class="flex gap-4 list-none text-sm">
+      <li><a href="#" class="hover:text-gray-300">Home</a></li>
+      <li><a href="#" class="hover:text-gray-300">Games</a></li>
+      <li><a href="#" class="hover:text-gray-300">Tournaments</a></li>
+      <li><a href="#" class="hover:text-gray-300">About</a></li>
+    </ul>
+  </div>
+
+  <!-- Center: Search -->
+  <div class="relative mx-8 hidden md:block flex-grow max-w-[500px]">
+    <label for="search-input" class="sr-only">Search games</label>
+    <span class="absolute inset-y-0 left-3 flex items-center text-gray-400 pointer-events-none">🔍</span>
+    <input
+      id="search-input"
+      type="search"
+      placeholder="Search games..."
+      aria-label="Search games"
+      class="w-full pl-10 pr-4 py-2 rounded-full border border-gray-300 bg-white text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition"
+    />
+  </div>
+
+  <!-- Right Section -->
+  <div class="flex items-center gap-3 flex-shrink-0">
+    <a routerLink="/sign-up" class="border border-green-500 text-green-500 px-4 py-1 rounded hover:bg-green-500 hover:text-white transition cursor-pointer relative">
+      Sign up
+    </a>
+    <a routerLink="/log-in" class="border border-blue-500 text-blue-500 px-4 py-1 rounded hover:bg-blue-500 hover:text-white transition cursor-pointer relative">
+      Log in
+    </a>
+  </div>
+</nav>

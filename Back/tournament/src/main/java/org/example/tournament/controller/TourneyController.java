@@ -20,26 +20,26 @@ public class TourneyController {
 
     public TourneyController(TourneyService tourneyService){this.tourneyService = tourneyService;}
 
-    @GetMapping("/all")
+    @GetMapping("/public/all")
     public ResponseEntity<List<TourneyResponseDto>> getAll(){ return ResponseEntity.ok(tourneyService.get());}
 
-    @GetMapping("/{id}")
+    @GetMapping("/public/{id}")
     public ResponseEntity<TourneyResponseDto> get (@PathVariable int id){
         return ResponseEntity.ok(tourneyService.get(id));
     }
 
+
     @PostMapping()
     public ResponseEntity<TourneyResponseDto> create ( @RequestBody TourneyReceiveDto tourneyReceiveDto){
-        System.out.println(tourneyReceiveDto.getName());
         return ResponseEntity.status(HttpStatus.CREATED).body(tourneyService.create(tourneyReceiveDto));
     }
 
-    @PutMapping("/{id}") //put met une nouvelle donnée
+    @PutMapping("/public/{id}") //put met une nouvelle donnée
     public ResponseEntity<TourneyResponseDto> update (@PathVariable int id, @RequestBody TourneyReceiveDto tourneyReceiveDto){
         return ResponseEntity.ok(tourneyService.update(id, tourneyReceiveDto));
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/public/{id}")
     public ResponseEntity<String> delete(@PathVariable int id){
         tourneyService.delete(id);
         return ResponseEntity.ok(String.format("Tourney at id : %s is deleted", id));

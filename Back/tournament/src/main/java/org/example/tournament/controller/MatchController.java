@@ -22,26 +22,26 @@ public class MatchController {
 
     public MatchController(MatchService matchService){this.matchService = matchService;}
 
-    @GetMapping("/all")
+    @GetMapping("/public/all")
     public ResponseEntity<List<MatchResponseDto>> getAll(){ return ResponseEntity.ok(matchService.get());}
 
-    @GetMapping("/{id}")
+    @GetMapping("/public/{id}")
     public ResponseEntity<MatchResponseDto> get (@PathVariable int id){
         //matchRepository.getAllMatchesOfAPlayer(id);
         return ResponseEntity.ok(matchService.get(id));
     }
 
-    @PostMapping
+    @PostMapping("/public")
     public ResponseEntity<MatchResponseDto> create (@Valid @RequestBody MatchReceiveDto matchReceiveDto){
         return ResponseEntity.status(HttpStatus.CREATED).body(matchService.create(matchReceiveDto));
     }
 
-    @PutMapping("/{id}") //put met une nouvelle donnée
+    @PutMapping("/public/{id}") //put met une nouvelle donnée
     public ResponseEntity<MatchResponseDto> update (@PathVariable int id, @RequestBody MatchReceiveDto matchReceiveDto){
         return ResponseEntity.ok(matchService.update(id, matchReceiveDto));
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/public/{id}")
     public ResponseEntity<String> delete(@PathVariable int id){
         matchService.delete(id);
         return ResponseEntity.ok(String.format("Match at id : %s is deleted", id));

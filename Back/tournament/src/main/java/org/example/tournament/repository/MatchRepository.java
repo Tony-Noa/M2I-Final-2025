@@ -10,6 +10,7 @@ import java.util.List;
 public interface MatchRepository extends JpaRepository<Match, Integer> {
     /*
 
+    // Ci-dessous sont des exemples de requetes directs qu'on lancerait quand on cliquerait sur certaines pages ou actions
 
     // faire une requete "from match where p1 ou p2" = idcherché @
     @Query("SELECT m FROM Match m WHERE m.p1 == :id OR m.p2 == :id")

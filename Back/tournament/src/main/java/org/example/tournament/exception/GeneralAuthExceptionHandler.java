@@ -17,9 +17,10 @@ public class GeneralAuthExceptionHandler {
         return new ResponseEntity<>(registerResponseDto, HttpStatus.OK);
     }
 
-    @ExceptionHandler(NotFoundException.class)
-    public ResponseEntity<LoginResponseDto> notFoundExceptionHandler (NotFoundException ex){
-        LoginResponseDto loginResponseDto = new LoginResponseDto(-1,"NotFound");
+
+    @ExceptionHandler(TokenNotFoundException.class)
+    public ResponseEntity<LoginResponseDto> notFoundExceptionHandler (TokenNotFoundException ex){
+        LoginResponseDto loginResponseDto = new LoginResponseDto(-1,"TokenNotFound");
         return new ResponseEntity<>(loginResponseDto,HttpStatus.OK);
-    }
+    } // Faudra voir comment on puisse renvoyer dans le response (de postman par exemple) le {"id": -1, "token": "TokenNotFound"}
 }

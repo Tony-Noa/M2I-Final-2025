@@ -1,0 +1,68 @@
+<section class="tournament-hero-wrapper">
+    <app-header-hero-game
+      [heroImages]="['https://wallpapercave.com/wp/wp10368290.jpg']"
+      [logo]="'assets/images/tournament-logo.png'"
+    >
+      <h1>Create your own tournament.</h1>
+      <p>
+        Organize and manage your tournaments effortlessly with customizable formats and game selections.
+        Build brackets, track participants, and host your event with ease.
+      </p>
+    </app-header-hero-game>
+  </section>
+  
+<div class="create-tournament-page">
+  <section class="hero">
+
+  </section>
+
+  <form (ngSubmit)="onSubmit()" [formGroup]="tournamentForm" class="tournament-form">
+
+    <label for="name">Tournament name</label>
+    <input type="text" id="name" formControlName="name" />
+
+    <p>Choose a tournament type.</p>
+    <div class="tournament-types">
+      <div
+        class="type-card"
+        *ngFor="let type of tournamentTypes"
+        [class.selected]="tournamentForm.value.type === type.value"
+        (click)="selectType(type.value)"
+      >
+        <h4>{{ type.label }}</h4>
+        <img [src]="type.image" alt="{{ type.label }}" />
+        <p>{{ type.description }}</p>
+      </div>
+    </div>
+
+    <label for="game">Choose a game</label>
+    <div class="custom-select" (click)="toggleDropdown()" [class.open]="dropdownOpen">
+      <div class="selected-game">
+        <img *ngIf="selectedGame" [src]="selectedGame.icon" alt="{{ selectedGame.title }}" />
+        <span>{{ selectedGame?.title || 'Select a game' }}</span>
+      </div>
+      <div class="options" *ngIf="dropdownOpen">
+        <div 
+          *ngFor="let game of games" 
+          class="option" 
+          (click)="selectGame(game)"
+        >
+          <img [src]="game.icon" alt="{{ game.title }}" />
+          <span>{{ game.title }}</span>
+        </div>
+      </div>
+    </div>
+    
+
+    <label for="participants">Number of participants:</label>
+    <input
+      type="number"
+      id="participants"
+      formControlName="participants"
+      min="2"
+      max="128"
+    />
+
+    <button type="submit" [disabled]="tournamentForm.invalid">Submit</button>
+  </form>
+</div>
