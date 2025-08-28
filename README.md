@@ -70,9 +70,9 @@ Voici un aperçu visuel de l'application :
 
 ## Diagramme UML
 
-Voici une représentation visuelle de l'architecture (structure, entités, relations) du projet :
+Voici une représentation visuelle de l'architecture de la BDD (structure, entités, relations) du projet :
 
-![Diagramme UML](STN2025UML_final1.drawio.png)
+![Diagramme UML](STN2025UMLBDD_final.drawio.png)
 
 ---
 
@@ -299,6 +299,6 @@ En public il y a pas besoin de mettre les tokens.
 
 
 - Faire le gestionnaire de bracket plutot dans le back
-- Diagramme UML : faire un diagramme de classe et un diagramme de BDD (ce que j'ai fait actuellement mixe les deux et c'est pas ouf)
+- Diagramme UML : faire un diagramme de classe (là j'ai fait le diagramme BDD en PNG, j'ai toujours le .io pour retravailler le diagramme de classe)
 - Back : Quand le response JSON sur postman renvoie un probleme car on a mal mis un truc, on a un "401 unauthorized" alors que c'est censé nous envoyer un autre type d'erreur. Ca nous fait une erreur d'authentification alors que y'a pas d'authentification censé être lié à ça.
 - Faire la connection entre le front et le back
