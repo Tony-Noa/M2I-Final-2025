@@ -41,9 +41,7 @@ Ce projet représente l’aboutissement de la formation de **Développeur Full-S
 
 Voici une représentation visuelle de l'architecture (structure, entités, relations) du projet :
 
-![Diagramme UML](URL_DE_L_IMAGE_UML_DERIVED_VIA_IMAGE_QUERY)
-
-*(Remplacez `URL_DE_L_IMAGE...` par l'image hébergée du fichier `.drawio` converti en PNG ou SVG.)*
+![Diagramme UML](STN2025UML_final1.drawio.png)
 
 ---
 
