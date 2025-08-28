@@ -1,0 +1,63 @@
+/* CONTENEUR = notre "table" 
+.table-sans-balise {
+    font-size: 13px;
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    /* largeur responsive, mais limitée 
+    width: 150px;
+    height: 26.8px;
+    background: white;
+    border: 2px solid var(--bordure);
+    border-radius: var(--rayon);
+    overflow: hidden;
+    /* arrondis propres 
+    box-shadow: 0 10px 30px rgba(0, 0, 0, .06);
+    min-width: fit-content;
+    min-height: fit-content;
+}
+
+
+/* CELLULES 
+.cellule {
+    display: flex;
+    align-items: center;
+
+
+    overflow: hidden;
+
+    /* pour bien voir la grille */
+
+
+/* On ne dessine que bordure HAUT + GAUCHE sur chaque cellule 
+    border-top: 1px solid var(--bordure);
+    border-left: 1px solid var(--bordure);
+}
+
+/* Pas de bordure en haut pour la 1ère ligne 
+.cellule:nth-child(-n+2) {
+    border-top: 0;
+}
+
+/* Pas de bordure à gauche pour la 1ère colonne 
+.cellule:nth-child(2n+1) {
+    border-left: 0;
+}
+
+/* Texte au centre pour la 2ère colonne 
+.cellule:nth-child(2n+2) {
+    justify-content: center;
+    font-weight: 600;
+}
+
+
+
+
+/* Styles demo, à retirer selon besoin 
+.cellule span {}
+
+
+/* Accessibilité visuelle au focus clavier 
+.cellule:focus {
+    outline: 2px solid #3b82f6;
+    outline-offset: -2px;
+} */

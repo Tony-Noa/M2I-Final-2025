@@ -1,14 +1,19 @@
 @import "tailwindcss";
 
+:root {
+  --bordure: #1d1d1d;
+  /* gris clair */
+  --rayon: 4px;
+  --fond: #f9fafb;
+}
+
 body {
-margin: 0;
-background-color: #f7f7f7; 
-margin: 0;
+  margin: 0;
+  background-color: #f7f7f7;
+  margin: 0;
 
 }
 
 html {
-    scroll-behavior: smooth;
-  }
-  
-  
+  scroll-behavior: smooth;
+}

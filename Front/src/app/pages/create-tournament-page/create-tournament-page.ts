@@ -1,6 +1,6 @@
 import { Component, HostListener, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { GameDataService } from '../../services/game-data.service'; 
+import { GameDataService } from '../../utils/services/game-data.service';
 import { CommonModule } from '@angular/common';
 import { HeaderHeroGameComponent } from "../../components/header-hero-game/header-hero-game";
 
@@ -12,8 +12,8 @@ interface Game {
 
 @Component({
   selector: 'app-create-tournament',
-  standalone: true,  
-  imports: [ReactiveFormsModule, CommonModule, HeaderHeroGameComponent], 
+  standalone: true,
+  imports: [ReactiveFormsModule, CommonModule, HeaderHeroGameComponent],
   templateUrl: './create-tournament-page.html',
   styleUrls: ['./create-tournament-page.css']
 })
@@ -42,7 +42,7 @@ export class CreateTournamentComponent implements OnInit {
     }
   ];
 
-  constructor(private fb: FormBuilder, private gameDataService: GameDataService) {}
+  constructor(private fb: FormBuilder, private gameDataService: GameDataService) { }
 
   ngOnInit() {
     this.games = this.gameDataService.getAllGames();
@@ -66,29 +66,29 @@ export class CreateTournamentComponent implements OnInit {
   }
 
   dropdownOpen = false;
-selectedGame: Game | null = null;
+  selectedGame: Game | null = null;
 
-toggleDropdown(event?: MouseEvent) {
-  if (event) {
-    event.stopPropagation();
+  toggleDropdown(event?: MouseEvent) {
+    if (event) {
+      event.stopPropagation();
+    }
+    this.dropdownOpen = !this.dropdownOpen;
   }
-  this.dropdownOpen = !this.dropdownOpen;
-}
 
 
-selectGame(game: Game) {
-  this.selectedGame = game;
-  this.tournamentForm.patchValue({ game: game.slug });
-  this.dropdownOpen = false;
-}
-
-@HostListener('document:click', ['$event'])
-onDocumentClick(event: MouseEvent) {
-  const target = event.target as HTMLElement;
-  if (!target.closest('.custom-select')) {
+  selectGame(game: Game) {
+    this.selectedGame = game;
+    this.tournamentForm.patchValue({ game: game.slug });
     this.dropdownOpen = false;
   }
-}
+
+  @HostListener('document:click', ['$event'])
+  onDocumentClick(event: MouseEvent) {
+    const target = event.target as HTMLElement;
+    if (!target.closest('.custom-select')) {
+      this.dropdownOpen = false;
+    }
+  }
 
 
 }

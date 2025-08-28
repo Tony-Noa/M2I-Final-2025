@@ -1,0 +1,27 @@
+<section id="bracketContainer">
+    <div id="bracket">
+        @for (round of tournament.rounds; track round; let i = $index, lastRound = $last) {
+        <div class="round">
+            @for (match of round.matches; track match; let j = $index) {
+            <div class="match" [style]="'margin: '+ calculMarginTop(i) + 'px 0px;'">
+                <app-match [match]="match" (haveAWinner)="changeBracket($event)" />
+                @if(!lastRound){
+                <div class="firstLine">
+
+                </div>
+                <div class="secondLine"
+                    [style]="($odd)?'bottom:'+ calculDistanceLink(i)/2 +'px; height:'+calculDistanceLink(i)+'px ;':'top:'  + calculDistanceLink(i)/2 +'px; height:'+calculDistanceLink(i)+'px ;' ">
+
+                </div>
+                <div class="thirdLine"
+                    [style]="($odd)? 'bottom:'+ calculDistanceLink(i) +'px;':'top:'  + calculDistanceLink(i) +'px;'">
+
+                </div>
+                }
+
+            </div>
+            }
+        </div>
+        }
+    </div>
+</section>
