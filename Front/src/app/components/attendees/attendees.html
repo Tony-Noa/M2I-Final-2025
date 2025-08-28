@@ -1,0 +1,32 @@
+
+
+<div class="attendees-container">
+    <div class="filters">
+      <button class="top-filter">{{ topFilter }}</button>
+      <input type="text" placeholder="SEARCH BAR" class="search-bar" />
+    </div>
+  
+    <table class="attendees-table">
+      <thead>
+        <tr>
+          <th>Player</th>
+          <th>Social</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let attendee of attendees">
+          <td class="player-cell">
+            <img [src]="attendee.avatar" alt="avatar" class="avatar" />
+            <span class="name">{{ attendee.name }}</span>
+          </td>
+          <td class="social-cell">
+            <img *ngFor="let social of attendee.socials"
+                 [src]="getSocialIcon(social)"
+                 [alt]="social"
+                 class="social-icon" />
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  

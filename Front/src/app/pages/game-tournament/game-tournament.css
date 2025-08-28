@@ -151,4 +151,18 @@
   text-align: center;
 }
 
-  
+.section-title {
+  font-weight: 500;
+  font-size: 25px;
+  max-width: 360px;
+  margin: 0 auto ;
+  color: #444;
+}
+
+.tournament-section {
+  flex: 1;
+  display: flex;
+  justify-content: center; 
+  align-items: flex-start;
+  padding-bottom: 2rem;
+}

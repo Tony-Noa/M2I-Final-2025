@@ -40,18 +40,19 @@
       </div>
 
       <div *ngIf="activeSection === 'attendees'">
-        <h2>Attendees</h2>
-        <p>(Add your attendees logic here)</p>
+        <h2 class="section-title">Attendees</h2>
+        <app-attendees></app-attendees>
       </div>
+      
 
       <div *ngIf="activeSection === 'matches'">
-        <h2>Matches</h2>
+        <h2 class="section-title">Matches</h2>
         <p>(Add your match list here)</p>
       </div>
 
       <div *ngIf="activeSection === 'main'">
-        <h2>Main</h2>
-        <p>(Main tournament content)</p>
+        <h2 class="section-title">Main</h2>
+        <div class="tournament-section"><app-tournament></app-tournament></div>
       </div>
     </div>
   </section>

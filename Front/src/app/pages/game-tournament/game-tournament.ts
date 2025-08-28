@@ -1,23 +1,26 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { Tournament } from "../../components/tournament/tournament";
+import { AttendeesComponent } from "../../components/attendees/attendees";
 
 @Component({
   selector: 'app-game-tournament',
   templateUrl: './game-tournament.html',
   styleUrls: ['./game-tournament.css'],
   standalone: true,
-  imports: [CommonModule]
+  imports: [CommonModule, Tournament, AttendeesComponent]
 })
 export class GameTournamentComponent implements OnInit {
   slug: string | null = null;
   tournament: any;
 
-  activeSection: string = 'overview'; // default section
+  activeSection: string = 'overview'; 
 
   @Input() backgroundImage: string = '';
 
   tournaments = [
+    
     {
       slug: 'smash-bros-tournament-1',
       tournamenttype: 'Single',
@@ -67,7 +70,11 @@ export class GameTournamentComponent implements OnInit {
         'https://cdn.wccftech.com/wp-content/uploads/2022/10/20221009171707_1-scaled.jpg',
       ]
     },
+
+    
   ];
+
+  
 
   constructor(private route: ActivatedRoute) {}
 
